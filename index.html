@@ -92,7 +92,7 @@
       display: inline-flex; align-items: center; gap: 12px;
       background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
       border-radius: 100px; padding: 6px 18px 6px 6px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
     .author-avatar {
       width: 40px; height: 40px; border-radius: 50%;
@@ -100,9 +100,11 @@
       border: 2px solid rgba(255,255,255,.3);
       flex-shrink: 0;
     }
-    .author-info { display: flex; flex-direction: column; text-align: left; }
     .author-name { font-size: .88rem; font-weight: 600; color: #fff; line-height: 1.3; }
-    .author-role { font-size: .72rem; color: rgba(255,255,255,.6); }
+    .l-context {
+      font-size: .88rem; color: rgba(255,255,255,.65); max-width: 600px;
+      margin: 0 auto 28px; line-height: 1.65; text-align: center;
+    }
 
     .btn-start {
       display: inline-flex; align-items: center; gap: 10px;
@@ -307,11 +309,10 @@
 
     <div class="author-card">
       <img src="photo-profil.jpg" alt="Guillaume Sumann" class="author-avatar">
-      <div class="author-info">
-        <span class="author-name">Guillaume Sumann</span>
-        <span class="author-role">Ingénieur CNAM · Spécialité Radioprotection</span>
-      </div>
+      <span class="author-name">Guillaume Sumann</span>
     </div>
+
+    <p class="l-context">Ce questionnaire s'inscrit dans le cadre d'un mémoire d'ingénieur CNAM portant sur le classement des travailleurs exposés aux rayonnements ionisants. Il vise à documenter les pratiques terrain concernant l'accès des travailleurs non classés aux zones réglementées, dans un contexte réglementaire en évolution rapide (décrets 2023-489, 2024-1238, 2025-1347). Vos réponses, strictement anonymes, contribueront à identifier les lacunes du dispositif actuel et à formuler des propositions d'amélioration.</p>
 
     <button class="btn-start" id="btn-start">
       Commencer l'enquête
@@ -404,6 +405,8 @@
       <h2 class="bloc-title">Connaissance réglementaire</h2>
       <p class="bloc-sub">Votre connaissance des textes encadrant l'accès des non-classés aux zones réglementées.</p>
 
+      <p style="font-style:italic; color:#475569; font-size:0.85rem; margin-bottom:16px;">Ce bloc porte sur votre connaissance des textes réglementaires encadrant l'accès des non-classés aux zones réglementées. Ces textes ont connu des évolutions significatives entre 2023 et 2025.</p>
+
       <div class="qcard">
         <div class="q-num">Q6</div>
         <div class="q-text">Connaissez-vous l'article R. 4451-32 du Code du travail encadrant l'accès des non-classés aux zones réglementées ?</div>
@@ -427,7 +430,7 @@
         <details class="article">
           <summary>Voir le texte de l'instruction</summary>
           <div class="article-body">
-            <strong>Instruction DGT/ASN n°2018/229, §10.5</strong> — Un travailleur non classé peut accéder de façon occasionnelle à une zone réglementée sous la responsabilité de l'employeur. La notion d'occasionnel n'est pas définie quantitativement dans les textes. Selon la position commune DGT/ASNR (2024), le critère est fonctionnel : l'accès ne doit pas s'inscrire dans le cadre habituel du travail du salarié.
+            <strong>Instruction DGT/ASN n°2018/229, §10.5</strong> — Un travailleur non classé peut accéder de façon occasionnelle à une zone réglementée sous la responsabilité de l'employeur. La notion d'occasionnel n'est pas définie quantitativement dans les textes réglementaires.
           </div>
         </details>
         <div class="opts">
@@ -472,11 +475,11 @@
 
       <div class="qcard">
         <div class="q-num">Q11</div>
-        <div class="q-text">L'obligation de port du dosimètre opérationnel s'applique-t-elle aux travailleurs non classés entrant en zone contrôlée dans votre établissement ?<span class="q-hint">(Art. R. 4451-33-1, modifié par décret n°2025-1347 du 26 déc. 2025)</span></div>
+        <div class="q-text">L'obligation de port du dosimètre opérationnel s'applique-t-elle aux travailleurs non classés entrant en zone contrôlée dans votre établissement ? (Art. R. 4451-33-1, modifié par décret n°2025-1347 du 26 déc. 2025)</div>
         <details class="article">
           <summary>Voir le texte de l'article</summary>
           <div class="article-body">
-            <strong>Art. R. 4451-33-1 (en vigueur depuis le 29 déc. 2025)</strong> — L'employeur équipe d'un dosimètre opérationnel tout travailleur entrant en zone contrôlée (1°). La révision de décembre 2025 ne mentionne plus explicitement les travailleurs non classés, contrairement à la version antérieure (décret 2023-489). La portée de cette modification fait l'objet d'interprétations divergentes.
+            <strong>Art. R. 4451-33-1 (modifié par décret n°2025-1347 du 26 déc. 2025, en vigueur depuis le 29 déc. 2025)</strong> — L'employeur équipe d'un dosimètre opérationnel tout travailleur entrant en zone contrôlée (1°). La révision de décembre 2025 ne mentionne plus explicitement les travailleurs non classés, contrairement à la version antérieure (décret 2023-489). La portée de cette modification fait l'objet d'interprétations divergentes.
           </div>
         </details>
         <div class="opts">
@@ -524,7 +527,7 @@
         <details class="article">
           <summary>Voir le texte de l'article</summary>
           <div class="article-body">
-            <strong>Art. R. 4451-52 (en vigueur depuis le 1er juillet 2018, décret n°2018-437)</strong> — Préalablement à l'affectation au poste de travail, l'employeur évalue l'exposition individuelle des travailleurs : 1° accédant aux zones délimitées (R. 4451-24 et R. 4451-28) ; 2° membres d'équipage à bord d'aéronefs ; 3° intervenant lors du transport de substances radioactives ; 4° intervenant en situation d'urgence radiologique.
+            <strong>Art. R. 4451-52 (en vigueur depuis le 1er juil. 2018, décret n°2018-437)</strong> — Préalablement à l'affectation au poste de travail, l'employeur évalue l'exposition individuelle des travailleurs accédant aux zones délimitées (R. 4451-24 et R. 4451-28), membres d'équipage à bord d'aéronefs, intervenant lors du transport de substances radioactives, ou en situation d'urgence radiologique.
           </div>
         </details>
         <div class="opts">
@@ -888,7 +891,7 @@
       <div id="qrcode-container"></div>
       <p id="qrcode-url"></p>
     </div>
-    <p class="conf-foot">Guillaume Sumann &nbsp;·&nbsp; Mémoire d'ingénieur CNAM &nbsp;·&nbsp; Radioprotection &nbsp;·&nbsp; 2024–2025</p>
+    <p class="conf-foot">Guillaume Sumann &nbsp;·&nbsp; Mémoire d'ingénieur CNAM &nbsp;·&nbsp; Radioprotection &nbsp;·&nbsp; 2025–2026</p>
   </div>
 </div>
 
