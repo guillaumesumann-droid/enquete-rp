@@ -4,1370 +4,978 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="">
-  <title>Questionnaire — Classement des travailleurs exposés aux rayonnements ionisants</title>
+  <title>Enquête nationale — Radioprotection des travailleurs | CNAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ── Variables ── */
     :root {
-      --bg: #f0f4f8;
-      --surface: #ffffff;
-      --accent: #1e3a5f;
-      --accent-mid: #2554a0;
-      --accent-light: #2563eb;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --success: #10b981;
-      --warning-bg: #fef3c7;
-      --warning-border: #f59e0b;
-      --warning-text: #92400e;
-      --info-bg: #eff6ff;
-      --info-border: #bfdbfe;
-      --info-text: #1e40af;
-      --error: #ef4444;
-      --radius: 12px;
-      --radius-sm: 8px;
-      --shadow: 0 2px 8px rgba(0,0,0,0.07);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
-      --transition: 0.25s ease;
+      --dark:         #0D1B2A;
+      --accent:       #1B4F8A;
+      --accent-h:     #153E6E;
+      --accent-light: #E8F0FE;
+      --bg:           #F4F6F9;
+      --surface:      #FFFFFF;
+      --text:         #1A1A2E;
+      --muted:        #64748B;
+      --border:       #E2E8F0;
+      --success:      #2D6A4F;
+      --success-bg:   #D1FAE5;
+      --r:            14px;
+      --r-sm:         10px;
+      --sh:           0 2px 12px rgba(0,0,0,.07);
+      --sh-md:        0 4px 20px rgba(0,0,0,.10);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
+    /* ── LANDING ── */
+    #landing {
+      min-height: 100vh; background: var(--dark);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 48px 24px; text-align: center; position: relative; overflow: hidden;
     }
-
-    /* ── Progress bar ── */
-    #progress-container {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: var(--surface);
-      box-shadow: 0 1px 6px rgba(0,0,0,0.09);
-      padding: 10px 24px 8px;
-    }
-    #progress-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-    #progress-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--accent);
-    }
-    #progress-text {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    #progress-bar-track {
-      background: var(--border);
-      border-radius: 99px;
-      height: 5px;
-      overflow: hidden;
-    }
-    #progress-bar-fill {
-      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
-      height: 100%;
-      border-radius: 99px;
-      width: 0%;
-      transition: width 0.5s ease;
-    }
-
-    /* ── Site header ── */
-    .site-header {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
-      color: #ffffff;
-      padding: 52px 24px 44px;
-      text-align: center;
-    }
-    .header-inner { max-width: 700px; margin: 0 auto; }
-    .badge-header {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 20px;
-      padding: 4px 14px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-    }
-    .site-header h1 {
-      font-size: clamp(1.15rem, 3.5vw, 1.65rem);
-      font-weight: 700;
-      line-height: 1.35;
-      margin-bottom: 10px;
-    }
-    .site-header .subtitle {
-      font-size: 0.9rem;
-      opacity: 0.78;
-      margin-bottom: 14px;
-    }
-    .author-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.12);
-      border-radius: 20px;
-      padding: 4px 14px;
-      font-size: 0.78rem;
-      opacity: 0.9;
-    }
-
-    /* ── Layout ── */
-    main {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-    }
-
-    /* ── Anonymity notice ── */
-    .notice-anon {
-      background: var(--info-bg);
-      border-left: 4px solid var(--accent-light);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      padding: 16px 20px;
-      margin-bottom: 28px;
-      font-size: 0.875rem;
-      color: var(--info-text);
-      line-height: 1.65;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeUp 0.5s 0.1s forwards;
-    }
-    .duration-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: white;
-      border: 1px solid var(--info-border);
-      border-radius: 20px;
-      padding: 3px 12px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 10px;
-    }
-
-    /* ── Section labels ── */
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 36px 0 14px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .section-label.visible { opacity: 1; transform: translateY(0); }
-    .section-label::before,
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border));
-    }
-    .section-label::before { background: linear-gradient(90deg, var(--border), transparent); }
-
-    /* ── Cards ── */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      padding: 26px 28px;
-      margin-bottom: 14px;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.45s ease, transform 0.45s ease, box-shadow var(--transition);
-    }
-    .card.visible { opacity: 1; transform: translateY(0); }
-    .card:hover { box-shadow: var(--shadow-md); }
-
-    .card.conditional { display: none; }
-    .card.conditional.shown { display: block; animation: slideDown 0.35s ease forwards; }
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .q-number {
-      font-size: 0.67rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      margin-bottom: 7px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .q-number .required-badge {
-      background: #fee2e2;
-      color: var(--error);
-      padding: 1px 8px;
-      border-radius: 20px;
-      font-size: 0.6rem;
-    }
-    .q-text {
-      font-size: 0.97rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 18px;
-      line-height: 1.55;
-    }
-    .q-hint {
-      font-weight: 400;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      display: block;
-      margin-top: 4px;
-    }
-
-    /* ── Options ── */
-    .options-list { display: flex; flex-direction: column; gap: 7px; }
-
-    .opt {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 11px 15px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: border-color var(--transition), background var(--transition);
-      font-size: 0.895rem;
-      user-select: none;
-    }
-    .opt:hover { border-color: var(--accent-light); background: var(--info-bg); }
-    .opt input[type="radio"],
-    .opt input[type="checkbox"] {
-      width: 17px;
-      height: 17px;
-      accent-color: var(--accent);
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-    .opt:has(input:checked) {
-      border-color: var(--accent);
-      background: #eef2ff;
-    }
-    .opt span { line-height: 1.45; }
-
-    /* ── Text fields ── */
-    .text-input,
-    .textarea-input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 0.885rem;
-      color: var(--text);
-      background: white;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-    .text-input:focus,
-    .textarea-input:focus {
-      outline: none;
-      border-color: var(--accent-light);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-    }
-    .textarea-input { resize: vertical; min-height: 96px; }
-    .other-input { margin-top: 9px; display: none; }
-
-    /* ── Skip notice ── */
-    #skip-notice {
-      display: none;
-      align-items: flex-start;
-      gap: 10px;
-      background: var(--warning-bg);
-      border: 1px solid var(--warning-border);
-      border-radius: var(--radius);
-      padding: 14px 18px;
-      font-size: 0.875rem;
-      color: var(--warning-text);
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-    #skip-notice.active { display: flex; animation: fadeUp 0.3s forwards; opacity: 0; }
-    #skip-notice .icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 1px; }
-
-    /* ── Skippable blocks transition ── */
-    #skippable-blocks {
-      overflow: hidden;
-      transition: max-height 0.6s ease, opacity 0.4s ease;
-      max-height: 12000px;
-      opacity: 1;
-    }
-    #skippable-blocks.hidden {
-      max-height: 0;
-      opacity: 0;
+    #landing::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 25%, rgba(27,79,138,.45) 0%, transparent 68%);
       pointer-events: none;
     }
+    .l-inner { position: relative; z-index: 1; max-width: 660px; }
 
-    /* ── Final section ── */
-    .final-section {
-      background: linear-gradient(135deg, #f8fafc, var(--info-bg));
-      border: 1px solid var(--info-border);
-      border-radius: var(--radius);
-      padding: 32px;
-      margin-top: 24px;
+    .atom { width: 110px; height: 110px; position: relative; margin: 0 auto 40px; }
+    .atom-nucleus {
+      position: absolute; width: 22px; height: 22px; background: #fff; border-radius: 50%;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      box-shadow: 0 0 20px rgba(255,255,255,.85), 0 0 50px rgba(96,165,250,.7);
     }
-    .final-section h2 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 10px;
+    .atom-orbit {
+      position: absolute; top: 50%; left: 50%;
+      width: 96px; height: 38px; border: 2px solid rgba(255,255,255,.35); border-radius: 50%;
+      margin: -19px 0 0 -48px;
     }
-    .final-notice {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-bottom: 4px;
-    }
-    @media (min-width: 560px) {
-      .form-grid.two { grid-template-columns: 1fr 1fr; }
-    }
-    .form-field label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 5px;
-    }
+    .atom-orbit:nth-child(2) { animation: orb-a 2.6s linear infinite; }
+    .atom-orbit:nth-child(3) { animation: orb-b 3.8s linear infinite; }
+    .atom-orbit:nth-child(4) { animation: orb-c 5.0s linear infinite; }
+    @keyframes orb-a { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+    @keyframes orb-b { from { transform: rotate(60deg);  } to { transform: rotate(420deg);  } }
+    @keyframes orb-c { from { transform: rotate(120deg); } to { transform: rotate(480deg);  } }
 
-    /* ── Submit button ── */
-    .btn-submit {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      width: 100%;
-      margin-top: 26px;
-      padding: 15px 32px;
-      background: var(--accent);
-      color: white;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border: none;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: background var(--transition), transform 0.1s;
+    .l-inner h1 {
+      font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+      color: #fff; line-height: 1.15; margin-bottom: 16px; letter-spacing: -.02em;
     }
-    .btn-submit:hover { background: #152e4d; transform: translateY(-1px); }
-    .btn-submit:active { transform: translateY(0); }
-    .btn-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-
-    /* ── QR section ── */
-    .qr-section {
-      margin-top: 40px;
-      padding: 28px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-align: center;
+    .l-inner h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #60A5FA, #93C5FD);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .qr-section h3 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 14px;
+    .l-sub { font-size: 1.05rem; color: rgba(255,255,255,.68); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .stats-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 44px; flex-wrap: wrap; }
+    .stat-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.14);
+      border-radius: 100px; padding: 8px 18px; font-size: .87rem; color: rgba(255,255,255,.88); font-weight: 500;
     }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 20px;
-      background: white;
-      color: var(--accent);
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: all var(--transition);
+    .btn-start {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: var(--dark); font-family: inherit; font-size: 1rem; font-weight: 600;
+      padding: 16px 36px; border: none; border-radius: 100px; cursor: pointer;
+      transition: transform .2s, box-shadow .2s; box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
-    .btn-secondary:hover { background: var(--accent); color: white; }
-    #qrcode-container { margin-top: 20px; display: flex; justify-content: center; }
-    #qrcode-url {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 10px;
-      word-break: break-all;
+    .btn-start:hover { transform: translateY(-2px); box-shadow: 0 14px 42px rgba(0,0,0,.4); }
+    .badge-cnam {
+      position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+      font-size: .7rem; color: rgba(255,255,255,.3); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
     }
 
-    /* ── Confirmation ── */
-    #confirmation {
-      display: none;
-      text-align: center;
-      padding: 72px 24px;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    #confirmation.shown { display: block; }
-    .confirm-check {
-      width: 64px;
-      height: 64px;
-      background: #d1fae5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 1.8rem;
-    }
-    #confirmation h2 {
-      font-size: 1.4rem;
-      color: var(--success);
-      margin-bottom: 12px;
-    }
-    #confirmation p {
-      color: var(--text-muted);
-      font-size: 0.925rem;
-      line-height: 1.65;
-    }
-    #confirmation .author-note {
-      margin-top: 16px;
-      font-size: 0.78rem;
-      color: #94a3b8;
-    }
+    /* ── FORM WRAPPER ── */
+    #form-wrapper { display: none; min-height: 100vh; }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 28px 24px;
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      line-height: 1.7;
+    /* ── TOP BAR ── */
+    #topbar {
+      position: sticky; top: 0; z-index: 100; background: var(--dark);
+      padding: 12px 24px; display: flex; align-items: center; gap: 14px;
     }
+    #bloc-label { font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.75); white-space: nowrap; min-width: 96px; }
+    #prog-track { flex: 1; height: 4px; background: rgba(255,255,255,.14); border-radius: 99px; overflow: hidden; }
+    #prog-fill { height: 100%; background: linear-gradient(90deg,#60A5FA,#93C5FD); border-radius: 99px; transition: width .5s ease; width: 0%; }
+    #pct-label { font-size: .75rem; color: rgba(255,255,255,.5); min-width: 36px; text-align: right; }
 
-    /* ── Error state ── */
-    .field-error {
-      border-color: var(--error) !important;
+    /* ── BLOCS ── */
+    .bloc { display: none; max-width: 760px; margin: 0 auto; padding: 36px 16px 110px; }
+    .bloc.active { display: block; animation: fadeUp .3s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .bloc-title { font-family: 'Syne', sans-serif; font-size: clamp(1.1rem,3vw,1.5rem); font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .bloc-sub { font-size: .84rem; color: var(--muted); margin-bottom: 28px; }
+
+    /* ── QUESTION CARDS ── */
+    .qcard {
+      background: var(--surface); border-radius: var(--r); box-shadow: var(--sh);
+      border: 1px solid var(--border); padding: 24px 26px; margin-bottom: 12px;
     }
-    .error-msg {
-      font-size: 0.78rem;
-      color: var(--error);
-      margin-top: 6px;
-      display: none;
+    .qcard.conditional { display: none; }
+    .qcard.conditional.shown { display: block; animation: fadeUp .3s ease both; }
+    .q-num { font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .req-badge { background: #FEE2E2; color: #DC2626; padding: 1px 8px; border-radius: 20px; font-size: .6rem; }
+    .q-text { font-size: .96rem; font-weight: 600; color: var(--text); margin-bottom: 18px; line-height: 1.5; }
+    .q-hint { font-weight: 400; font-size: .79rem; color: var(--muted); display: block; margin-top: 4px; }
+
+    /* ── OPTION BUTTONS ── */
+    .opts { display: flex; flex-direction: column; gap: 8px; }
+    .opt-btn {
+      display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+      border: 2px solid var(--border); border-radius: var(--r-sm); cursor: pointer;
+      transition: border-color .16s, background .16s, color .16s, transform .1s;
+      font-size: .875rem; color: var(--text); user-select: none; line-height: 1.4;
     }
+    .opt-btn input[type="radio"],
+    .opt-btn input[type="checkbox"] { display: none; }
+    .chk {
+      width: 20px; height: 20px; flex-shrink: 0; border: 2px solid var(--border); border-radius: 50%;
+      transition: all .16s; display: flex; align-items: center; justify-content: center; font-size: .7rem;
+    }
+    .opt-btn:has(input[type="checkbox"]) .chk { border-radius: 6px; }
+    .opt-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+    .opt-btn:hover .chk { border-color: var(--accent); }
+    .opt-btn:active { transform: scale(.99); }
+    .opt-btn:has(input:checked) { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .opt-btn:has(input:checked) .chk { background: rgba(255,255,255,.25); border-color: rgba(255,255,255,.5); color: #fff; }
+    .opt-btn:has(input:checked) .chk::after { content: '✓'; font-weight: 700; }
+
+    /* ── INPUTS ── */
+    .text-input, .textarea-input {
+      width: 100%; padding: 11px 14px; border: 2px solid var(--border); border-radius: var(--r-sm);
+      font-family: inherit; font-size: .875rem; color: var(--text); background: #fff;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .text-input:focus, .textarea-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(27,79,138,.1); }
+    .textarea-input { resize: vertical; min-height: 100px; }
+    .other-input { margin-top: 10px; display: none; }
+    .error-msg { font-size: .77rem; color: #DC2626; margin-top: 8px; display: none; }
     .error-msg.show { display: block; }
 
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .site-header { padding: 36px 16px 32px; }
-      .card { padding: 20px 18px; }
-      .final-section { padding: 22px 18px; }
+    /* ── NAV BAR ── */
+    #nav-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; display: none;
+      background: var(--surface); border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+      padding: 12px 24px; justify-content: space-between; align-items: center; z-index: 99;
     }
+    #nav-bar.visible { display: flex; }
+    .btn-nav { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 100px; font-family: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; transition: all .2s; }
+    .btn-prev { background: transparent; color: var(--muted); border: 2px solid var(--border); }
+    .btn-prev:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-next { background: var(--accent); color: #fff; border: none; }
+    .btn-next:hover { background: var(--accent-h); transform: translateY(-1px); }
+
+    /* ── FINAL SECTION ── */
+    .final-card { background: var(--surface); border-radius: var(--r); border: 1px solid var(--border); box-shadow: var(--sh); padding: 32px; }
+    .final-card h2 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .final-notice { font-size: .83rem; color: var(--muted); line-height: 1.7; margin-bottom: 22px; }
+    .fg { display: grid; gap: 14px; }
+    .fg.two { grid-template-columns: 1fr 1fr; }
+    .fg label { display: block; font-size: .76rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
+    .btn-submit {
+      display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 24px;
+      padding: 16px 32px; background: var(--accent); color: #fff;
+      font-family: inherit; font-size: 1rem; font-weight: 600; border: none; border-radius: var(--r-sm);
+      cursor: pointer; transition: background .2s, transform .1s;
+    }
+    .btn-submit:hover { background: var(--accent-h); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+    /* ── CONFIRMATION ── */
+    #confirmation { display: none; min-height: 100vh; background: var(--bg); padding: 64px 24px 48px; text-align: center; }
+    #confirmation.shown { display: block; }
+    .check-ring {
+      width: 80px; height: 80px; margin: 0 auto 28px;
+      background: var(--success-bg); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .check-svg { animation: fadeIn .35s .45s ease both; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    #confirmation h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--success); margin-bottom: 12px; }
+    .conf-msg { font-size: .97rem; color: var(--muted); line-height: 1.7; max-width: 460px; margin: 0 auto 28px; }
+    .conf-anon {
+      display: inline-block; background: var(--accent-light); border: 1px solid #BFDBFE;
+      border-radius: var(--r-sm); padding: 12px 20px; font-size: .82rem; color: var(--accent); margin-bottom: 36px;
+    }
+    .qr-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 28px; max-width: 300px; margin: 0 auto 32px; }
+    .qr-card h3 { font-size: .86rem; font-weight: 600; color: var(--muted); margin-bottom: 14px; }
+    #qrcode-container { display: flex; justify-content: center; margin-bottom: 10px; }
+    #qrcode-url { font-size: .7rem; color: var(--muted); word-break: break-all; }
+    .conf-foot { font-size: .7rem; color: #94A3B8; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
+      .fg.two { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .bloc { padding: 22px 12px 100px; }
+      .qcard { padding: 18px 16px; }
+      .btn-nav { padding: 10px 16px; font-size: .84rem; }
+      .l-inner h1 { font-size: 1.85rem; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
-  <!-- ── Progress bar ── -->
-  <div id="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-    <div id="progress-header">
-      <span id="progress-label">Progression</span>
-      <span id="progress-text">0 question répondue</span>
+<!-- ══════════════════════════════════════
+     LANDING
+══════════════════════════════════════ -->
+<section id="landing">
+  <div class="l-inner">
+    <div class="atom">
+      <div class="atom-nucleus"></div>
+      <div class="atom-orbit"></div>
+      <div class="atom-orbit"></div>
+      <div class="atom-orbit"></div>
     </div>
-    <div id="progress-bar-track">
-      <div id="progress-bar-fill"></div>
+
+    <h1>Votre expertise<br><em>compte</em></h1>
+    <p class="l-sub">Enquête nationale sur la radioprotection des travailleurs exposés aux rayonnements ionisants</p>
+
+    <div class="stats-row">
+      <div class="stat-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>
+        34 questions
+      </div>
+      <div class="stat-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        ~10 minutes
+      </div>
+      <div class="stat-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Anonyme
+      </div>
     </div>
+
+    <button class="btn-start" id="btn-start">
+      Commencer l'enquête
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+  <div class="badge-cnam">Mémoire d'ingénieur CNAM &nbsp;·&nbsp; Radioprotection &nbsp;·&nbsp; Guillaume Sumann</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FORM WRAPPER
+══════════════════════════════════════ -->
+<div id="form-wrapper">
+
+  <div id="topbar">
+    <span id="bloc-label">Bloc 1 / 7</span>
+    <div id="prog-track"><div id="prog-fill"></div></div>
+    <span id="pct-label">0 %</span>
   </div>
 
-  <!-- ── Header ── -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="badge-header">Mémoire d'ingénieur CNAM &nbsp;·&nbsp; Radioprotection</div>
-      <h1>Le classement des travailleurs exposés aux rayonnements ionisants</h1>
-      <p class="subtitle">Accès occasionnel aux zones réglementées — Questionnaire de recherche académique</p>
-      <div class="author-chip">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Guillaume Sumann
-      </div>
-    </div>
-  </header>
+  <form id="questionnaire-form" novalidate>
 
-  <!-- ── Main ── -->
-  <main id="form-container">
+    <!-- ══ BLOC 1 — Profil ══ -->
+    <div class="bloc active" id="bloc-1">
+      <h2 class="bloc-title">Profil du répondant</h2>
+      <p class="bloc-sub">Questions facultatives pour contextualiser les résultats de l'étude.</p>
 
-    <div class="notice-anon" role="note">
-      Ce questionnaire peut être complété de façon totalement anonyme. Aucune information permettant d'identifier le répondant ou son établissement n'est collectée, sauf si vous choisissez volontairement de vous identifier en fin de questionnaire.
-      <div class="duration-pill">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        Durée estimée : 15 minutes
-      </div>
-    </div>
-
-    <form id="questionnaire-form" novalidate>
-
-      <!-- ══════════════════════════════════════
-           BLOC 1 — Profil du répondant
-      ══════════════════════════════════════ -->
-      <div class="section-label" data-animate>Bloc 1 &nbsp;—&nbsp; Profil du répondant</div>
-
-      <!-- Q1 -->
-      <div class="card" data-question="q1">
-        <div class="q-number">Q1 &nbsp;·&nbsp; Facultatif</div>
+      <div class="qcard">
+        <div class="q-num">Q1 · Facultatif</div>
         <div class="q-text">Quel est votre rôle principal ?</div>
-        <div class="options-list">
-          <label class="opt"><input type="radio" name="q1" value="PCR"><span>Personne Compétente en Radioprotection (PCR)</span></label>
-          <label class="opt"><input type="radio" name="q1" value="travailleur_expose"><span>Travailleur exposé (classé ou non classé)</span></label>
-          <label class="opt"><input type="radio" name="q1" value="inspecteur"><span>Inspecteur ASNR / DREETS</span></label>
-          <label class="opt"><input type="radio" name="q1" value="autre"><span>Autre</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q1" value="PCR"><div class="chk"></div><span>Personne Compétente en Radioprotection (PCR)</span></label>
+          <label class="opt-btn"><input type="radio" name="q1" value="travailleur_expose"><div class="chk"></div><span>Travailleur exposé (classé ou non classé)</span></label>
+          <label class="opt-btn"><input type="radio" name="q1" value="inspecteur"><div class="chk"></div><span>Inspecteur ASNR / DREETS</span></label>
+          <label class="opt-btn"><input type="radio" name="q1" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
         <input type="text" name="q1_autre" class="text-input other-input" placeholder="Précisez votre rôle">
       </div>
 
-      <!-- Q2 -->
-      <div class="card" data-question="q2">
-        <div class="q-number">Q2 &nbsp;·&nbsp; Facultatif</div>
+      <div class="qcard">
+        <div class="q-num">Q2 · Facultatif</div>
         <div class="q-text">Dans quel secteur exercez-vous principalement ?</div>
-        <div class="options-list">
-          <label class="opt"><input type="radio" name="q2" value="nucleaire"><span>Industrie nucléaire (INB, prestataire nucléaire)</span></label>
-          <label class="opt"><input type="radio" name="q2" value="medical"><span>Médical / hospitalier</span></label>
-          <label class="opt"><input type="radio" name="q2" value="radiologie_ind"><span>Radiologie industrielle / contrôle non destructif</span></label>
-          <label class="opt"><input type="radio" name="q2" value="recherche"><span>Recherche</span></label>
-          <label class="opt"><input type="radio" name="q2" value="dentaire"><span>Dentaire</span></label>
-          <label class="opt"><input type="radio" name="q2" value="veterinaire"><span>Vétérinaire</span></label>
-          <label class="opt"><input type="radio" name="q2" value="autre"><span>Autre</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q2" value="nucleaire"><div class="chk"></div><span>Industrie nucléaire (INB, prestataire nucléaire)</span></label>
+          <label class="opt-btn"><input type="radio" name="q2" value="medical"><div class="chk"></div><span>Médical / hospitalier</span></label>
+          <label class="opt-btn"><input type="radio" name="q2" value="radiologie_ind"><div class="chk"></div><span>Radiologie industrielle / contrôle non destructif</span></label>
+          <label class="opt-btn"><input type="radio" name="q2" value="recherche"><div class="chk"></div><span>Recherche</span></label>
+          <label class="opt-btn"><input type="radio" name="q2" value="dentaire"><div class="chk"></div><span>Dentaire</span></label>
+          <label class="opt-btn"><input type="radio" name="q2" value="veterinaire"><div class="chk"></div><span>Vétérinaire</span></label>
+          <label class="opt-btn"><input type="radio" name="q2" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
         <input type="text" name="q2_autre" class="text-input other-input" placeholder="Précisez votre secteur">
       </div>
 
-      <!-- Q3 -->
-      <div class="card" data-question="q3">
-        <div class="q-number">Q3 &nbsp;·&nbsp; Facultatif</div>
+      <div class="qcard">
+        <div class="q-num">Q3 · Facultatif</div>
         <div class="q-text">Quelle est votre expérience dans le domaine de la radioprotection ?</div>
-        <div class="options-list">
-          <label class="opt"><input type="radio" name="q3" value="moins_5"><span>Moins de 5 ans</span></label>
-          <label class="opt"><input type="radio" name="q3" value="5_15"><span>5 à 15 ans</span></label>
-          <label class="opt"><input type="radio" name="q3" value="plus_15"><span>Plus de 15 ans</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q3" value="moins_5"><div class="chk"></div><span>Moins de 5 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q3" value="5_15"><div class="chk"></div><span>5 à 15 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q3" value="plus_15"><div class="chk"></div><span>Plus de 15 ans</span></label>
         </div>
       </div>
 
-      <!-- Q4 -->
-      <div class="card" data-question="q4">
-        <div class="q-number">Q4 &nbsp;·&nbsp; Facultatif</div>
+      <div class="qcard">
+        <div class="q-num">Q4 · Facultatif</div>
         <div class="q-text">Quelle est la taille de votre établissement ou entreprise ?</div>
-        <div class="options-list">
-          <label class="opt"><input type="radio" name="q4" value="moins_50"><span>Moins de 50 personnes</span></label>
-          <label class="opt"><input type="radio" name="q4" value="50_250"><span>50 à 250 personnes</span></label>
-          <label class="opt"><input type="radio" name="q4" value="plus_250"><span>Plus de 250 personnes</span></label>
-          <label class="opt"><input type="radio" name="q4" value="independant"><span>Je suis indépendant(e)</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q4" value="moins_50"><div class="chk"></div><span>Moins de 50 personnes</span></label>
+          <label class="opt-btn"><input type="radio" name="q4" value="50_250"><div class="chk"></div><span>50 à 250 personnes</span></label>
+          <label class="opt-btn"><input type="radio" name="q4" value="plus_250"><div class="chk"></div><span>Plus de 250 personnes</span></label>
+          <label class="opt-btn"><input type="radio" name="q4" value="independant"><div class="chk"></div><span>Je suis indépendant(e)</span></label>
         </div>
       </div>
 
-      <!-- Q5 — OBLIGATOIRE -->
-      <div class="card" data-question="q5" id="card-q5">
-        <div class="q-number">Q5 &nbsp;<span class="required-badge">Obligatoire</span></div>
+      <div class="qcard" id="card-q5">
+        <div class="q-num">Q5 <span class="req-badge">Obligatoire</span></div>
         <div class="q-text">Dans votre établissement, des travailleurs non classés accèdent-ils à des zones réglementées ?</div>
-        <div class="options-list" id="q5-options">
-          <label class="opt"><input type="radio" name="q5" value="oui_regulierement" required><span>Oui, régulièrement</span></label>
-          <label class="opt"><input type="radio" name="q5" value="oui_occasionnellement"><span>Oui, occasionnellement</span></label>
-          <label class="opt"><input type="radio" name="q5" value="non"><span>Non</span></label>
-          <label class="opt"><input type="radio" name="q5" value="ne_sais_pas"><span>Je ne sais pas</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q5" value="oui_regulierement" required><div class="chk"></div><span>Oui, régulièrement</span></label>
+          <label class="opt-btn"><input type="radio" name="q5" value="oui_occasionnellement"><div class="chk"></div><span>Oui, occasionnellement</span></label>
+          <label class="opt-btn"><input type="radio" name="q5" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q5" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
         <div class="error-msg" id="q5-error">Merci de répondre à cette question obligatoire.</div>
       </div>
+    </div>
 
-      <!-- Skip notice -->
-      <div id="skip-notice" role="alert">
-        <span class="icon">ℹ️</span>
-        <span>Votre réponse indique que les blocs 2 à 6 ne s'appliquent pas à votre situation. Vous êtes redirigé(e) directement vers le Bloc 7 et les questions finales.</span>
+    <!-- ══ BLOC 2 — Connaissance réglementaire ══ -->
+    <div class="bloc" id="bloc-2">
+      <h2 class="bloc-title">Connaissance réglementaire</h2>
+      <p class="bloc-sub">Votre connaissance des textes encadrant l'accès des non-classés aux zones réglementées.</p>
+
+      <div class="qcard">
+        <div class="q-num">Q6</div>
+        <div class="q-text">Connaissez-vous l'article R. 4451-32 du Code du travail encadrant l'accès des non-classés aux zones réglementées ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q6" value="oui_applique"><div class="chk"></div><span>Oui, je l'applique régulièrement</span></label>
+          <label class="opt-btn"><input type="radio" name="q6" value="oui_pas_formel"><div class="chk"></div><span>Oui, je le connais mais ne l'applique pas formellement</span></label>
+          <label class="opt-btn"><input type="radio" name="q6" value="entendu_parler"><div class="chk"></div><span>J'en ai entendu parler</span></label>
+          <label class="opt-btn"><input type="radio" name="q6" value="non"><div class="chk"></div><span>Non, je ne le connaissais pas</span></label>
+        </div>
       </div>
 
-      <!-- ══════════════════════════════════════
-           BLOCS 2–6 (conditionnels Q5)
-      ══════════════════════════════════════ -->
-      <div id="skippable-blocks">
-
-        <!-- BLOC 2 -->
-        <div class="section-label" data-animate>Bloc 2 &nbsp;—&nbsp; Connaissance réglementaire</div>
-
-        <!-- Q6 -->
-        <div class="card" data-question="q6">
-          <div class="q-number">Q6</div>
-          <div class="q-text">Connaissez-vous l'article R. 4451-32 du Code du travail encadrant l'accès des non-classés aux zones réglementées ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q6" value="oui_applique"><span>Oui, je l'applique régulièrement</span></label>
-            <label class="opt"><input type="radio" name="q6" value="oui_pas_formel"><span>Oui, je le connais mais ne l'applique pas formellement</span></label>
-            <label class="opt"><input type="radio" name="q6" value="entendu_parler"><span>J'en ai entendu parler</span></label>
-            <label class="opt"><input type="radio" name="q6" value="non"><span>Non, je ne le connaissais pas</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q7</div>
+        <div class="q-text">Connaissez-vous l'instruction DGT/ASN n°2018/229 (§10.5) qui introduit la notion d'accès « occasionnel » pour les non-classés ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q7" value="oui_reference"><div class="chk"></div><span>Oui, je l'utilise comme référence</span></label>
+          <label class="opt-btn"><input type="radio" name="q7" value="oui_connaissance"><div class="chk"></div><span>Oui, j'en ai connaissance</span></label>
+          <label class="opt-btn"><input type="radio" name="q7" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
+      </div>
 
-        <!-- Q7 -->
-        <div class="card" data-question="q7">
-          <div class="q-number">Q7</div>
-          <div class="q-text">Connaissez-vous l'instruction DGT/ASN n°2018/229 (§10.5) qui introduit la notion d'accès « occasionnel » pour les non-classés ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q7" value="oui_reference"><span>Oui, je l'utilise comme référence</span></label>
-            <label class="opt"><input type="radio" name="q7" value="oui_connaissance"><span>Oui, j'en ai connaissance</span></label>
-            <label class="opt"><input type="radio" name="q7" value="non"><span>Non</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q8</div>
+        <div class="q-text">Selon vous, la notion d'accès « occasionnel » est-elle suffisamment définie dans les textes ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q8" value="oui_clair"><div class="chk"></div><span>Oui, elle est suffisamment claire</span></label>
+          <label class="opt-btn"><input type="radio" name="q8" value="non_precision"><div class="chk"></div><span>Non, elle manque de précision quantitative (fréquence, durée)</span></label>
+          <label class="opt-btn"><input type="radio" name="q8" value="non_interpretations"><div class="chk"></div><span>Non, elle est source d'interprétations divergentes dans mon établissement</span></label>
+          <label class="opt-btn"><input type="radio" name="q8" value="sans_opinion"><div class="chk"></div><span>Je n'ai pas d'opinion sur ce point</span></label>
         </div>
+      </div>
 
-        <!-- Q8 -->
-        <div class="card" data-question="q8">
-          <div class="q-number">Q8</div>
-          <div class="q-text">Selon vous, la notion d'accès « occasionnel » est-elle suffisamment définie dans les textes ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q8" value="oui_clair"><span>Oui, elle est suffisamment claire</span></label>
-            <label class="opt"><input type="radio" name="q8" value="non_precision"><span>Non, elle manque de précision quantitative (fréquence, durée)</span></label>
-            <label class="opt"><input type="radio" name="q8" value="non_interpretations"><span>Non, elle est source d'interprétations divergentes dans mon établissement</span></label>
-            <label class="opt"><input type="radio" name="q8" value="sans_opinion"><span>Je n'ai pas d'opinion sur ce point</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q9</div>
+        <div class="q-text">Dans votre établissement, existe-t-il une définition interne et formalisée de l'accès occasionnel (nombre maximum d'accès par an, durée cumulée maximale…) ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q9" value="oui_quantitatif"><div class="chk"></div><span>Oui, avec des critères quantitatifs définis</span></label>
+          <label class="opt-btn"><input type="radio" name="q9" value="oui_vague"><div class="chk"></div><span>Oui, mais de façon vague et non quantifiée</span></label>
+          <label class="opt-btn"><input type="radio" name="q9" value="non_cas_par_cas"><div class="chk"></div><span>Non, chaque cas est traité au cas par cas</span></label>
+          <label class="opt-btn"><input type="radio" name="q9" value="non_jamais_pose"><div class="chk"></div><span>Non, la question ne s'est jamais posée</span></label>
         </div>
+      </div>
 
-        <!-- Q9 (ex-Q8b) -->
-        <div class="card" data-question="q9">
-          <div class="q-number">Q9</div>
-          <div class="q-text">Dans votre établissement, existe-t-il une définition interne et formalisée de l'accès occasionnel (par exemple : nombre maximum d'accès par an, durée cumulée maximale) ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q9" value="oui_quantitatif"><span>Oui, avec des critères quantitatifs définis</span></label>
-            <label class="opt"><input type="radio" name="q9" value="oui_vague"><span>Oui, mais de façon vague et non quantifiée</span></label>
-            <label class="opt"><input type="radio" name="q9" value="non_cas_par_cas"><span>Non, chaque cas est traité au cas par cas</span></label>
-            <label class="opt"><input type="radio" name="q9" value="non_jamais_pose"><span>Non, la question ne s'est jamais posée</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q10</div>
+        <div class="q-text">La notion d'accès occasionnel a-t-elle déjà été invoquée pour maintenir un travailleur non classé alors qu'un classement aurait pu être justifié ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q10" value="oui_observe"><div class="chk"></div><span>Oui, j'ai observé cette situation</span></label>
+          <label class="opt-btn"><input type="radio" name="q10" value="non_jamais"><div class="chk"></div><span>Non, jamais à ma connaissance</span></label>
+          <label class="opt-btn"><input type="radio" name="q10" value="pas_en_mesure"><div class="chk"></div><span>Je ne suis pas en mesure de l'évaluer</span></label>
+          <label class="opt-btn"><input type="radio" name="q10" value="prefere_pas"><div class="chk"></div><span>Je préfère ne pas répondre</span></label>
         </div>
+      </div>
 
-        <!-- Q10 (ex-Q8c) -->
-        <div class="card" data-question="q10">
-          <div class="q-number">Q10</div>
-          <div class="q-text">Dans votre expérience, la notion d'accès occasionnel a-t-elle déjà été invoquée pour maintenir un travailleur non classé alors qu'un classement aurait pu être justifié ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q10" value="oui_observe"><span>Oui, j'ai observé cette situation</span></label>
-            <label class="opt"><input type="radio" name="q10" value="non_jamais"><span>Non, jamais à ma connaissance</span></label>
-            <label class="opt"><input type="radio" name="q10" value="pas_en_mesure"><span>Je ne suis pas en mesure de l'évaluer</span></label>
-            <label class="opt"><input type="radio" name="q10" value="prefere_pas"><span>Je préfère ne pas répondre</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q11</div>
+        <div class="q-text">Connaissez-vous l'obligation de port du dosimètre opérationnel pour tout travailleur entrant en zone contrôlée, y compris les non-classés (art. R. 4451-33-1, décret 2023-489) ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q11" value="oui_appliquee"><div class="chk"></div><span>Oui, elle est appliquée dans mon établissement</span></label>
+          <label class="opt-btn"><input type="radio" name="q11" value="oui_pas_systematique"><div class="chk"></div><span>Oui, mais elle n'est pas systématiquement appliquée</span></label>
+          <label class="opt-btn"><input type="radio" name="q11" value="non"><div class="chk"></div><span>Non, je ne la connaissais pas</span></label>
         </div>
+      </div>
+    </div>
 
-        <!-- Q11 (ex-Q9) -->
-        <div class="card" data-question="q11">
-          <div class="q-number">Q11</div>
-          <div class="q-text">Connaissez-vous l'obligation de port du dosimètre opérationnel pour TOUT travailleur entrant en zone contrôlée, y compris les non-classés (art. R. 4451-33-1, décret 2023-489) ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q11" value="oui_appliquee"><span>Oui, elle est appliquée dans mon établissement</span></label>
-            <label class="opt"><input type="radio" name="q11" value="oui_pas_systematique"><span>Oui, mais elle n'est pas systématiquement appliquée</span></label>
-            <label class="opt"><input type="radio" name="q11" value="non"><span>Non, je ne la connaissais pas</span></label>
-          </div>
+    <!-- ══ BLOC 3 — Pratiques de gestion ══ -->
+    <div class="bloc" id="bloc-3">
+      <h2 class="bloc-title">Pratiques de gestion des non-classés</h2>
+      <p class="bloc-sub">Procédures d'autorisation, dosimétrie et traçabilité dans votre établissement.</p>
+
+      <div class="qcard">
+        <div class="q-num">Q12</div>
+        <div class="q-text">L'autorisation d'accès en zone réglementée pour les non-classés est-elle formalisée par écrit ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q12" value="oui_systematiquement"><div class="chk"></div><span>Oui, systématiquement</span></label>
+          <label class="opt-btn"><input type="radio" name="q12" value="oui_parfois"><div class="chk"></div><span>Oui, parfois</span></label>
+          <label class="opt-btn"><input type="radio" name="q12" value="non_orale"><div class="chk"></div><span>Non, elle est orale</span></label>
+          <label class="opt-btn"><input type="radio" name="q12" value="pas_procedure"><div class="chk"></div><span>Il n'existe pas de procédure formalisée</span></label>
         </div>
+      </div>
 
-        <!-- BLOC 3 -->
-        <div class="section-label" data-animate>Bloc 3 &nbsp;—&nbsp; Pratiques de gestion des non-classés en zone réglementée</div>
-
-        <!-- Q12 (ex-Q10) -->
-        <div class="card" data-question="q12">
-          <div class="q-number">Q12</div>
-          <div class="q-text">Dans votre établissement, l'autorisation d'accès en zone réglementée pour les non-classés est-elle formalisée par écrit ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q12" value="oui_systematiquement"><span>Oui, systématiquement</span></label>
-            <label class="opt"><input type="radio" name="q12" value="oui_parfois"><span>Oui, parfois</span></label>
-            <label class="opt"><input type="radio" name="q12" value="non_orale"><span>Non, elle est orale</span></label>
-            <label class="opt"><input type="radio" name="q12" value="pas_procedure"><span>Il n'existe pas de procédure formalisée</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q13</div>
+        <div class="q-text">Qui signe l'autorisation d'accès dans votre établissement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q13" value="employeur"><div class="chk"></div><span>L'employeur ou son représentant habilité</span></label>
+          <label class="opt-btn"><input type="radio" name="q13" value="pcr"><div class="chk"></div><span>La PCR</span></label>
+          <label class="opt-btn"><input type="radio" name="q13" value="responsable_service"><div class="chk"></div><span>Le responsable de service</span></label>
+          <label class="opt-btn"><input type="radio" name="q13" value="personne"><div class="chk"></div><span>Personne — il n'y a pas d'autorisation formalisée</span></label>
+          <label class="opt-btn"><input type="radio" name="q13" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
+        <input type="text" name="q13_autre" class="text-input other-input" placeholder="Précisez">
+      </div>
 
-        <!-- Q13 (ex-Q11) -->
-        <div class="card" data-question="q13">
-          <div class="q-number">Q13</div>
-          <div class="q-text">Qui signe l'autorisation d'accès dans votre établissement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q13" value="employeur"><span>L'employeur ou son représentant habilité</span></label>
-            <label class="opt"><input type="radio" name="q13" value="pcr"><span>La PCR</span></label>
-            <label class="opt"><input type="radio" name="q13" value="responsable_service"><span>Le responsable de service</span></label>
-            <label class="opt"><input type="radio" name="q13" value="personne"><span>Personne — il n'y a pas d'autorisation formalisée</span></label>
-            <label class="opt"><input type="radio" name="q13" value="autre"><span>Autre</span></label>
-          </div>
-          <input type="text" name="q13_autre" class="text-input other-input" placeholder="Précisez">
+      <div class="qcard">
+        <div class="q-num">Q14</div>
+        <div class="q-text">L'évaluation individuelle du risque (art. R. 4451-52) est-elle réalisée pour chaque non-classé accédant aux zones réglementées ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q14" value="oui_ecrit"><div class="chk"></div><span>Oui, systématiquement et par écrit</span></label>
+          <label class="opt-btn"><input type="radio" name="q14" value="oui_informel"><div class="chk"></div><span>Oui, mais de façon informelle</span></label>
+          <label class="opt-btn"><input type="radio" name="q14" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q14" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
+      </div>
 
-        <!-- Q14 (ex-Q12) -->
-        <div class="card" data-question="q14">
-          <div class="q-number">Q14</div>
-          <div class="q-text">L'évaluation individuelle du risque (art. R. 4451-52) est-elle réalisée pour chaque non-classé accédant aux zones réglementées ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q14" value="oui_ecrit"><span>Oui, systématiquement et par écrit</span></label>
-            <label class="opt"><input type="radio" name="q14" value="oui_informel"><span>Oui, mais de façon informelle</span></label>
-            <label class="opt"><input type="radio" name="q14" value="rarement"><span>Rarement</span></label>
-            <label class="opt"><input type="radio" name="q14" value="non"><span>Non</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q15</div>
+        <div class="q-text">Le dosimètre opérationnel est-il effectivement porté par les non-classés lors de leurs accès en zone contrôlée ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q15" value="oui_systematiquement"><div class="chk"></div><span>Oui, systématiquement</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="oui_plupart"><div class="chk"></div><span>Oui, la plupart du temps</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="pas_disponibles"><div class="chk"></div><span>Nous n'avons pas de dosimètres opérationnels disponibles pour les non-classés</span></label>
         </div>
+      </div>
 
-        <!-- Q15 (ex-Q13) -->
-        <div class="card" data-question="q15">
-          <div class="q-number">Q15</div>
-          <div class="q-text">Le dosimètre opérationnel est-il effectivement porté par les non-classés lors de leurs accès en zone contrôlée ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q15" value="oui_systematiquement"><span>Oui, systématiquement</span></label>
-            <label class="opt"><input type="radio" name="q15" value="oui_plupart"><span>Oui, la plupart du temps</span></label>
-            <label class="opt"><input type="radio" name="q15" value="rarement"><span>Rarement</span></label>
-            <label class="opt"><input type="radio" name="q15" value="non"><span>Non</span></label>
-            <label class="opt"><input type="radio" name="q15" value="pas_disponibles"><span>Nous n'avons pas de dosimètres opérationnels disponibles pour les non-classés</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q16</div>
+        <div class="q-text">Un registre des accès est-il tenu pour les travailleurs non classés entrant en zones réglementées ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q16" value="oui_tous"><div class="chk"></div><span>Oui, pour tous les accès</span></label>
+          <label class="opt-btn"><input type="radio" name="q16" value="oui_certains"><div class="chk"></div><span>Oui, pour certains accès seulement</span></label>
+          <label class="opt-btn"><input type="radio" name="q16" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
+      </div>
 
-        <!-- Q16 (ex-Q14) -->
-        <div class="card" data-question="q16">
-          <div class="q-number">Q16</div>
-          <div class="q-text">Un registre des accès est-il tenu pour les travailleurs non classés entrant en zones réglementées ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q16" value="oui_tous"><span>Oui, pour tous les accès</span></label>
-            <label class="opt"><input type="radio" name="q16" value="oui_certains"><span>Oui, pour certains accès seulement</span></label>
-            <label class="opt"><input type="radio" name="q16" value="non"><span>Non</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q17</div>
+        <div class="q-text">Les données du dosimètre opérationnel des non-classés sont-elles conservées dans votre établissement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q17" value="oui_duree_definie"><div class="chk"></div><span>Oui, avec une durée de conservation définie</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="oui_sans_duree"><div class="chk"></div><span>Oui, mais sans durée définie</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="non"><div class="chk"></div><span>Non, elles ne sont pas conservées</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
+      </div>
 
-        <!-- Q17 (ex-Q15) -->
-        <div class="card" data-question="q17" id="card-q17">
-          <div class="q-number">Q17</div>
-          <div class="q-text">Les données du dosimètre opérationnel des non-classés sont-elles conservées dans votre établissement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q17" value="oui_duree_definie"><span>Oui, avec une durée de conservation définie</span></label>
-            <label class="opt"><input type="radio" name="q17" value="oui_sans_duree"><span>Oui, mais sans durée définie</span></label>
-            <label class="opt"><input type="radio" name="q17" value="non"><span>Non, elles ne sont pas conservées</span></label>
-            <label class="opt"><input type="radio" name="q17" value="ne_sais_pas"><span>Je ne sais pas</span></label>
-          </div>
+      <!-- Q18 conditionnel Q17 -->
+      <div class="qcard conditional" id="card-q18">
+        <div class="q-num">Q18 · Question complémentaire</div>
+        <div class="q-text">Quelle durée de conservation est appliquée ?</div>
+        <input type="text" name="q18" class="text-input" placeholder="Ex. : 50 ans, durée de vie professionnelle + 10 ans…">
+      </div>
+
+      <div class="qcard">
+        <div class="q-num">Q19</div>
+        <div class="q-text">Les travailleurs prestataires non classés intervenant sur plusieurs sites font-ils l'objet d'un suivi dosimétrique cumulé entre les différents employeurs ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q19" value="oui_cumule"><div class="chk"></div><span>Oui, un suivi cumulé est organisé</span></label>
+          <label class="opt-btn"><input type="radio" name="q19" value="non_independant"><div class="chk"></div><span>Non, chaque employeur gère ses données de façon indépendante</span></label>
+          <label class="opt-btn"><input type="radio" name="q19" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+          <label class="opt-btn"><input type="radio" name="q19" value="non_applicable"><div class="chk"></div><span>Non applicable — pas de prestataires non classés en zones réglementées</span></label>
         </div>
+      </div>
+    </div>
 
-        <!-- Q18 (ex-Q15b) — conditionnel -->
-        <div class="card conditional" id="card-q18" data-question="q18">
-          <div class="q-number">Q18 &nbsp;·&nbsp; Question complémentaire</div>
-          <div class="q-text">Quelle durée de conservation est appliquée ?</div>
-          <input type="text" name="q18" class="text-input" placeholder="Ex. : 50 ans, durée de vie professionnelle + 10 ans…">
+    <!-- ══ BLOC 4 — Dimension économique ══ -->
+    <div class="bloc" id="bloc-4">
+      <h2 class="bloc-title">Dimension économique et décisions de classement</h2>
+      <p class="bloc-sub">Facteurs influençant les décisions et rôle du médecin du travail.</p>
+
+      <div class="qcard">
+        <div class="q-num">Q20</div>
+        <div class="q-text">Dans votre expérience, les décisions de non-classement sont-elles influencées par des considérations économiques ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q20" value="oui_moteur_principal"><div class="chk"></div><span>Oui, c'est souvent le moteur principal</span></label>
+          <label class="opt-btn"><input type="radio" name="q20" value="oui_facteur_important"><div class="chk"></div><span>Oui, c'est régulièrement un facteur important, parfois déterminant</span></label>
+          <label class="opt-btn"><input type="radio" name="q20" value="oui_facteur"><div class="chk"></div><span>Oui, c'est un facteur parmi d'autres</span></label>
+          <label class="opt-btn"><input type="radio" name="q20" value="non_dosimetrique"><div class="chk"></div><span>Non, les décisions reposent uniquement sur l'évaluation dosimétrique</span></label>
+          <label class="opt-btn"><input type="radio" name="q20" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
+      </div>
 
-        <!-- Q19 (ex-Q15c) -->
-        <div class="card" data-question="q19">
-          <div class="q-number">Q19</div>
-          <div class="q-text">Dans votre établissement, les travailleurs prestataires non classés intervenant sur plusieurs sites font-ils l'objet d'un suivi dosimétrique cumulé entre les différents employeurs ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q19" value="oui_cumule"><span>Oui, un suivi cumulé est organisé</span></label>
-            <label class="opt"><input type="radio" name="q19" value="non_independant"><span>Non, chaque employeur gère ses données de façon indépendante</span></label>
-            <label class="opt"><input type="radio" name="q19" value="ne_sais_pas"><span>Je ne sais pas</span></label>
-            <label class="opt"><input type="radio" name="q19" value="non_applicable"><span>Non applicable — pas de prestataires non classés en zones réglementées</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q21</div>
+        <div class="q-text">Avez-vous observé des situations où un travailleur aurait dû être classé mais ne l'a pas été ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q21" value="oui_plusieurs"><div class="chk"></div><span>Oui, plusieurs fois</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="oui_une_fois"><div class="chk"></div><span>Oui, une fois</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="pas_en_mesure"><div class="chk"></div><span>Je ne suis pas en mesure de l'évaluer</span></label>
         </div>
+      </div>
 
-        <!-- BLOC 4 -->
-        <div class="section-label" data-animate>Bloc 4 &nbsp;—&nbsp; Dimension économique et décisions de classement</div>
-
-        <!-- Q20 (ex-Q16) -->
-        <div class="card" data-question="q20">
-          <div class="q-number">Q20</div>
-          <div class="q-text">Dans votre expérience, les décisions de non-classement sont-elles influencées par des considérations économiques ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q20" value="oui_moteur_principal"><span>Oui, c'est souvent le moteur principal</span></label>
-            <label class="opt"><input type="radio" name="q20" value="oui_facteur_important"><span>Oui, c'est régulièrement un facteur important, parfois déterminant</span></label>
-            <label class="opt"><input type="radio" name="q20" value="oui_facteur"><span>Oui, c'est un facteur parmi d'autres</span></label>
-            <label class="opt"><input type="radio" name="q20" value="non_dosimetrique"><span>Non, les décisions reposent uniquement sur l'évaluation dosimétrique</span></label>
-            <label class="opt"><input type="radio" name="q20" value="ne_sais_pas"><span>Je ne sais pas</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q22</div>
+        <div class="q-text">Selon vous, quels sont les principaux freins au déclassement d'un travailleur dont l'exposition est inférieure aux seuils ?<span class="q-hint">Plusieurs réponses possibles</span></div>
+        <div class="opts">
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="resistance_travailleur"><div class="chk"></div><span>Résistance du travailleur (perte de prime, de statut)</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="resistance_visites"><div class="chk"></div><span>Résistance liée à la réduction de la fréquence des visites médicales</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="resistance_encadrement"><div class="chk"></div><span>Résistance de l'encadrement</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="complexite_admin"><div class="chk"></div><span>Complexité administrative du déclassement</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="risque_juridique"><div class="chk"></div><span>Crainte d'un risque juridique pour l'employeur</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="pas_procedure"><div class="chk"></div><span>Absence de procédure formalisée dans l'établissement</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q22[]" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
+        <input type="text" name="q22_autre" class="text-input other-input" placeholder="Précisez">
+      </div>
 
-        <!-- Q21 (ex-Q17) -->
-        <div class="card" data-question="q21">
-          <div class="q-number">Q21</div>
-          <div class="q-text">Avez-vous observé des situations où un travailleur aurait dû être classé mais ne l'a pas été ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q21" value="oui_plusieurs"><span>Oui, plusieurs fois</span></label>
-            <label class="opt"><input type="radio" name="q21" value="oui_une_fois"><span>Oui, une fois</span></label>
-            <label class="opt"><input type="radio" name="q21" value="non"><span>Non</span></label>
-            <label class="opt"><input type="radio" name="q21" value="pas_en_mesure"><span>Je ne suis pas en mesure de l'évaluer</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q23</div>
+        <div class="q-text">Le coût de gestion des non-classés accédant aux zones réglementées est-il budgété dans votre établissement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q23" value="oui_explicite"><div class="chk"></div><span>Oui, de façon explicite</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="partiellement"><div class="chk"></div><span>Partiellement</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="non"><div class="chk"></div><span>Non, ces coûts sont absorbés sans identification</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
+      </div>
 
-        <!-- Q22 (ex-Q18) — cases à cocher -->
-        <div class="card" data-question="q22">
-          <div class="q-number">Q22</div>
-          <div class="q-text">Selon vous, quels sont les principaux freins au déclassement d'un travailleur dont l'exposition est inférieure aux seuils ?
-            <span class="q-hint">Plusieurs réponses possibles</span>
-          </div>
-          <div class="options-list">
-            <label class="opt"><input type="checkbox" name="q22[]" value="resistance_travailleur"><span>Résistance du travailleur (perte de prime, de statut)</span></label>
-            <label class="opt"><input type="checkbox" name="q22[]" value="resistance_visites"><span>Résistance liée à la réduction de la fréquence des visites médicales</span></label>
-            <label class="opt"><input type="checkbox" name="q22[]" value="resistance_encadrement"><span>Résistance de l'encadrement</span></label>
-            <label class="opt"><input type="checkbox" name="q22[]" value="complexite_admin"><span>Complexité administrative du déclassement</span></label>
-            <label class="opt"><input type="checkbox" name="q22[]" value="risque_juridique"><span>Crainte d'un risque juridique pour l'employeur</span></label>
-            <label class="opt"><input type="checkbox" name="q22[]" value="pas_procedure"><span>Absence de procédure formalisée dans l'établissement</span></label>
-            <label class="opt"><input type="checkbox" name="q22[]" value="autre" id="q22-autre-cb"><span>Autre</span></label>
-          </div>
-          <input type="text" name="q22_autre" class="text-input other-input" placeholder="Précisez">
+      <div class="qcard">
+        <div class="q-num">Q24</div>
+        <div class="q-text">Le médecin du travail est-il systématiquement consulté avant toute décision de classement ou de non-classement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q24" value="oui_formalise"><div class="chk"></div><span>Oui, systématiquement et son avis est formalisé</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="oui_informel"><div class="chk"></div><span>Oui, mais de façon informelle</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas / pas de médecin du travail dédié</span></label>
         </div>
+      </div>
 
-        <!-- Q23 (ex-Q19) -->
-        <div class="card" data-question="q23">
-          <div class="q-number">Q23</div>
-          <div class="q-text">Le coût de gestion des non-classés accédant aux zones réglementées est-il budgété dans votre établissement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q23" value="oui_explicite"><span>Oui, de façon explicite</span></label>
-            <label class="opt"><input type="radio" name="q23" value="partiellement"><span>Partiellement</span></label>
-            <label class="opt"><input type="radio" name="q23" value="non"><span>Non, ces coûts sont absorbés sans identification</span></label>
-            <label class="opt"><input type="radio" name="q23" value="ne_sais_pas"><span>Je ne sais pas</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q25</div>
+        <div class="q-text">Le médecin du travail a-t-il accès à l'évaluation individuelle préalable (EIERI) réalisée par la PCR avant de donner son avis sur le classement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q25" value="oui_systematiquement"><div class="chk"></div><span>Oui, systématiquement</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="oui_parfois"><div class="chk"></div><span>Oui, parfois</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="non_cosigne"><div class="chk"></div><span>Non, il cosigne sans avoir accès à l'évaluation</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
+      </div>
 
-        <!-- Sous-bloc : Rôle du médecin du travail -->
-        <div class="section-label" data-animate>Rôle du médecin du travail</div>
-
-        <!-- Q24 (ex-Q19b) -->
-        <div class="card" data-question="q24">
-          <div class="q-number">Q24</div>
-          <div class="q-text">Dans votre établissement, le médecin du travail est-il systématiquement consulté avant toute décision de classement ou de non-classement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q24" value="oui_formalise"><span>Oui, systématiquement et son avis est formalisé</span></label>
-            <label class="opt"><input type="radio" name="q24" value="oui_informel"><span>Oui, mais de façon informelle</span></label>
-            <label class="opt"><input type="radio" name="q24" value="rarement"><span>Rarement</span></label>
-            <label class="opt"><input type="radio" name="q24" value="non"><span>Non</span></label>
-            <label class="opt"><input type="radio" name="q24" value="ne_sais_pas"><span>Je ne sais pas / pas de médecin du travail dédié</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q26</div>
+        <div class="q-text">Comment qualifieriez-vous la collaboration entre la PCR et le médecin du travail sur les questions de classement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q26" value="effective_reguliere"><div class="chk"></div><span>Effective et régulière</span></label>
+          <label class="opt-btn"><input type="radio" name="q26" value="existante_insuffisante"><div class="chk"></div><span>Existante mais insuffisante</span></label>
+          <label class="opt-btn"><input type="radio" name="q26" value="quasi_inexistante"><div class="chk"></div><span>Quasi inexistante</span></label>
+          <label class="opt-btn"><input type="radio" name="q26" value="pas_visibilite"><div class="chk"></div><span>Je n'ai pas de visibilité sur ce point</span></label>
         </div>
+      </div>
+    </div>
 
-        <!-- Q25 (ex-Q19c) -->
-        <div class="card" data-question="q25">
-          <div class="q-number">Q25</div>
-          <div class="q-text">Le médecin du travail a-t-il accès à l'évaluation individuelle préalable (EIERI) réalisée par la PCR avant de donner son avis sur le classement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q25" value="oui_systematiquement"><span>Oui, systématiquement</span></label>
-            <label class="opt"><input type="radio" name="q25" value="oui_parfois"><span>Oui, parfois</span></label>
-            <label class="opt"><input type="radio" name="q25" value="non_cosigne"><span>Non, il cosigne sans avoir accès à l'évaluation</span></label>
-            <label class="opt"><input type="radio" name="q25" value="ne_sais_pas"><span>Je ne sais pas</span></label>
-          </div>
+    <!-- ══ BLOC 5 — Inspections ══ -->
+    <div class="bloc" id="bloc-5">
+      <h2 class="bloc-title">Inspections et constats de non-conformité</h2>
+      <p class="bloc-sub">Résultats d'inspections et fréquence des non-conformités observées.</p>
+
+      <div class="qcard">
+        <div class="q-num">Q27</div>
+        <div class="q-text">Votre établissement a-t-il fait l'objet d'une inspection ASNR ou DREETS portant sur la gestion des non-classés en zones réglementées ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q27" value="oui_avec_constat"><div class="chk"></div><span>Oui, avec constat de non-conformité</span></label>
+          <label class="opt-btn"><input type="radio" name="q27" value="oui_sans_constat"><div class="chk"></div><span>Oui, sans constat de non-conformité</span></label>
+          <label class="opt-btn"><input type="radio" name="q27" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q27" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
+      </div>
 
-        <!-- Q26 (ex-Q19d) -->
-        <div class="card" data-question="q26">
-          <div class="q-number">Q26</div>
-          <div class="q-text">Dans votre expérience, comment qualifieriez-vous la collaboration entre la PCR et le médecin du travail sur les questions de classement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q26" value="effective_reguliere"><span>Effective et régulière</span></label>
-            <label class="opt"><input type="radio" name="q26" value="existante_insuffisante"><span>Existante mais insuffisante</span></label>
-            <label class="opt"><input type="radio" name="q26" value="quasi_inexistante"><span>Quasi inexistante</span></label>
-            <label class="opt"><input type="radio" name="q26" value="pas_visibilite"><span>Je n'ai pas de visibilité sur ce point</span></label>
-          </div>
+      <!-- Q28 conditionnel Q27 -->
+      <div class="qcard conditional" id="card-q28">
+        <div class="q-num">Q28 · Question complémentaire</div>
+        <div class="q-text">Quel type d'écart a été relevé ?<span class="q-hint">Plusieurs réponses possibles</span></div>
+        <div class="opts">
+          <label class="opt-btn"><input type="checkbox" name="q28[]" value="absence_autorisation"><div class="chk"></div><span>Absence d'autorisation d'accès formalisée</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q28[]" value="autorisation_pcr"><div class="chk"></div><span>Autorisation signée par la PCR au lieu de l'employeur</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q28[]" value="defaut_dosimetre"><div class="chk"></div><span>Défaut de port du dosimètre opérationnel</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q28[]" value="absence_evaluation"><div class="chk"></div><span>Absence d'évaluation individuelle</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q28[]" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
+        <input type="text" name="q28_autre" class="text-input other-input" placeholder="Précisez l'écart">
+      </div>
 
-        <!-- BLOC 5 -->
-        <div class="section-label" data-animate>Bloc 5 &nbsp;—&nbsp; Inspections et constats de non-conformité</div>
-
-        <!-- Q27 (ex-Q20) -->
-        <div class="card" data-question="q27" id="card-q27">
-          <div class="q-number">Q27</div>
-          <div class="q-text">Votre établissement a-t-il fait l'objet d'une inspection ASNR ou DREETS portant sur la gestion des non-classés en zones réglementées ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q27" value="oui_avec_constat"><span>Oui, avec constat de non-conformité</span></label>
-            <label class="opt"><input type="radio" name="q27" value="oui_sans_constat"><span>Oui, sans constat de non-conformité</span></label>
-            <label class="opt"><input type="radio" name="q27" value="non"><span>Non</span></label>
-            <label class="opt"><input type="radio" name="q27" value="ne_sais_pas"><span>Je ne sais pas</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q29</div>
+        <div class="q-text">Selon vous, le défaut de port du dosimètre opérationnel en zone contrôlée est-il un problème fréquent ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q29" value="oui_tres_frequent"><div class="chk"></div><span>Oui, très fréquent dans mon secteur</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="oui_occasionnel"><div class="chk"></div><span>Oui, occasionnel</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="non_bien_applique"><div class="chk"></div><span>Non, c'est bien appliqué dans mon secteur</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="pas_visibilite"><div class="chk"></div><span>Je n'ai pas de visibilité sur ce point</span></label>
         </div>
+      </div>
 
-        <!-- Q28 (ex-Q20b) — conditionnel -->
-        <div class="card conditional" id="card-q28" data-question="q28">
-          <div class="q-number">Q28 &nbsp;·&nbsp; Question complémentaire</div>
-          <div class="q-text">Quel type d'écart a été relevé ?
-            <span class="q-hint">Plusieurs réponses possibles</span>
-          </div>
-          <div class="options-list">
-            <label class="opt"><input type="checkbox" name="q28[]" value="absence_autorisation"><span>Absence d'autorisation d'accès formalisée</span></label>
-            <label class="opt"><input type="checkbox" name="q28[]" value="autorisation_pcr"><span>Autorisation signée par la PCR au lieu de l'employeur</span></label>
-            <label class="opt"><input type="checkbox" name="q28[]" value="defaut_dosimetre"><span>Défaut de port du dosimètre opérationnel</span></label>
-            <label class="opt"><input type="checkbox" name="q28[]" value="absence_evaluation"><span>Absence d'évaluation individuelle</span></label>
-            <label class="opt"><input type="checkbox" name="q28[]" value="autre" id="q28-autre-cb"><span>Autre</span></label>
-          </div>
-          <input type="text" name="q28_autre" class="text-input other-input" placeholder="Précisez l'écart">
+      <div class="qcard">
+        <div class="q-num">Q30</div>
+        <div class="q-text">Avez-vous connaissance de situations où l'absence de traçabilité dosimétrique d'un non-classé a posé un problème juridique ou médical a posteriori ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q30" value="oui_mon_etablissement"><div class="chk"></div><span>Oui, directement dans mon établissement</span></label>
+          <label class="opt-btn"><input type="radio" name="q30" value="oui_autre_etablissement"><div class="chk"></div><span>Oui, dans un autre établissement dont j'ai connaissance</span></label>
+          <label class="opt-btn"><input type="radio" name="q30" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q30" value="prefere_pas"><div class="chk"></div><span>Je préfère ne pas répondre</span></label>
         </div>
+      </div>
+    </div>
 
-        <!-- Q29 (ex-Q21) -->
-        <div class="card" data-question="q29">
-          <div class="q-number">Q29</div>
-          <div class="q-text">Selon vous, le défaut de port du dosimètre opérationnel en zone contrôlée est-il un problème fréquent ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q29" value="oui_tres_frequent"><span>Oui, très fréquent dans mon secteur</span></label>
-            <label class="opt"><input type="radio" name="q29" value="oui_occasionnel"><span>Oui, occasionnel</span></label>
-            <label class="opt"><input type="radio" name="q29" value="non_bien_applique"><span>Non, c'est bien appliqué dans mon secteur</span></label>
-            <label class="opt"><input type="radio" name="q29" value="pas_visibilite"><span>Je n'ai pas de visibilité sur ce point</span></label>
-          </div>
+    <!-- ══ BLOC 6 — Dimension psychologique ══ -->
+    <div class="bloc" id="bloc-6">
+      <h2 class="bloc-title">Dimension psychologique et humaine</h2>
+      <p class="bloc-sub">Résistances au déclassement et comportements observés dans la pratique.</p>
+
+      <div class="qcard">
+        <div class="q-num">Q31</div>
+        <div class="q-text">Avez-vous observé des résistances de la part de travailleurs lors d'un déclassement ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q31" value="pas_confronte"><div class="chk"></div><span>Je n'ai pas été confronté(e) à cette situation</span></label>
+          <label class="opt-btn"><input type="radio" name="q31" value="oui_frequemment"><div class="chk"></div><span>Oui, fréquemment</span></label>
+          <label class="opt-btn"><input type="radio" name="q31" value="oui_occasionnellement"><div class="chk"></div><span>Oui, occasionnellement</span></label>
+          <label class="opt-btn"><input type="radio" name="q31" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
+      </div>
 
-        <!-- Q30 (ex-Q22) -->
-        <div class="card" data-question="q30">
-          <div class="q-number">Q30</div>
-          <div class="q-text">Avez-vous connaissance de situations où l'absence de traçabilité dosimétrique d'un non-classé a posé un problème juridique ou médical a posteriori ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q30" value="oui_mon_etablissement"><span>Oui, directement dans mon établissement</span></label>
-            <label class="opt"><input type="radio" name="q30" value="oui_autre_etablissement"><span>Oui, dans un autre établissement dont j'ai connaissance</span></label>
-            <label class="opt"><input type="radio" name="q30" value="non"><span>Non</span></label>
-            <label class="opt"><input type="radio" name="q30" value="prefere_pas"><span>Je préfère ne pas répondre</span></label>
-          </div>
+      <!-- Q32 conditionnel Q31 -->
+      <div class="qcard conditional" id="card-q32">
+        <div class="q-num">Q32 · Question complémentaire</div>
+        <div class="q-text">Sur quoi portait principalement la résistance ?<span class="q-hint">Plusieurs réponses possibles</span></div>
+        <div class="opts">
+          <label class="opt-btn"><input type="checkbox" name="q32[]" value="perte_prime"><div class="chk"></div><span>Perte de la prime d'exposition</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q32[]" value="visites_medicales"><div class="chk"></div><span>Réduction de la fréquence des visites médicales</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q32[]" value="perte_statut"><div class="chk"></div><span>Sentiment de perte de statut professionnel</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q32[]" value="inquietude_risque"><div class="chk"></div><span>Inquiétude sur la réalité du risque résiduel</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q32[]" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
+        <input type="text" name="q32_autre" class="text-input other-input" placeholder="Précisez">
+      </div>
 
-        <!-- BLOC 6 -->
-        <div class="section-label" data-animate>Bloc 6 &nbsp;—&nbsp; Dimension psychologique et humaine</div>
-
-        <!-- Q31 (ex-Q23) — option neutre en premier -->
-        <div class="card" data-question="q31" id="card-q31">
-          <div class="q-number">Q31</div>
-          <div class="q-text">Avez-vous observé des résistances de la part de travailleurs lors d'un déclassement ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q31" value="pas_confronte"><span>Je n'ai pas été confronté(e) à cette situation</span></label>
-            <label class="opt"><input type="radio" name="q31" value="oui_frequemment"><span>Oui, fréquemment</span></label>
-            <label class="opt"><input type="radio" name="q31" value="oui_occasionnellement"><span>Oui, occasionnellement</span></label>
-            <label class="opt"><input type="radio" name="q31" value="non"><span>Non</span></label>
-          </div>
+      <div class="qcard">
+        <div class="q-num">Q33</div>
+        <div class="q-text">Le retrait du dosimètre lors d'un déclassement modifie-t-il le comportement du travailleur vis-à-vis du risque radiologique ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q33" value="oui_vigilance"><div class="chk"></div><span>Oui, il tend à diminuer la vigilance</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="non_identique"><div class="chk"></div><span>Non, le comportement reste identique</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="depend_communication"><div class="chk"></div><span>Cela dépend de la façon dont le déclassement est communiqué</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="pas_observe"><div class="chk"></div><span>Je n'ai pas observé ce phénomène</span></label>
         </div>
+      </div>
 
-        <!-- Q32 (ex-Q23b) — conditionnel -->
-        <div class="card conditional" id="card-q32" data-question="q32">
-          <div class="q-number">Q32 &nbsp;·&nbsp; Question complémentaire</div>
-          <div class="q-text">Sur quoi portait principalement la résistance ?
-            <span class="q-hint">Plusieurs réponses possibles</span>
-          </div>
-          <div class="options-list">
-            <label class="opt"><input type="checkbox" name="q32[]" value="perte_prime"><span>Perte de la prime d'exposition</span></label>
-            <label class="opt"><input type="checkbox" name="q32[]" value="visites_medicales"><span>Réduction de la fréquence des visites médicales</span></label>
-            <label class="opt"><input type="checkbox" name="q32[]" value="perte_statut"><span>Sentiment de perte de statut professionnel</span></label>
-            <label class="opt"><input type="checkbox" name="q32[]" value="inquietude_risque"><span>Inquiétude sur la réalité du risque résiduel</span></label>
-            <label class="opt"><input type="checkbox" name="q32[]" value="autre" id="q32-autre-cb"><span>Autre</span></label>
-          </div>
-          <input type="text" name="q32_autre" class="text-input other-input" placeholder="Précisez">
+      <div class="qcard">
+        <div class="q-num">Q34</div>
+        <div class="q-text">La décision de déclassement est-elle accompagnée d'une explication formelle au travailleur concerné ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q34" value="oui_ecrit"><div class="chk"></div><span>Oui, systématiquement et par écrit</span></label>
+          <label class="opt-btn"><input type="radio" name="q34" value="oui_oral"><div class="chk"></div><span>Oui, oralement</span></label>
+          <label class="opt-btn"><input type="radio" name="q34" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q34" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
+      </div>
+    </div>
 
-        <!-- Q33 (ex-Q24) -->
-        <div class="card" data-question="q33">
-          <div class="q-number">Q33</div>
-          <div class="q-text">Selon vous, le retrait du dosimètre lors d'un déclassement modifie-t-il le comportement du travailleur vis-à-vis du risque radiologique ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q33" value="oui_vigilance"><span>Oui, il tend à diminuer la vigilance</span></label>
-            <label class="opt"><input type="radio" name="q33" value="non_identique"><span>Non, le comportement reste identique</span></label>
-            <label class="opt"><input type="radio" name="q33" value="depend_communication"><span>Cela dépend de la façon dont le déclassement est communiqué</span></label>
-            <label class="opt"><input type="radio" name="q33" value="pas_observe"><span>Je n'ai pas observé ce phénomène</span></label>
-          </div>
-        </div>
+    <!-- ══ BLOC 7 — Perspectives ══ -->
+    <div class="bloc" id="bloc-7">
+      <h2 class="bloc-title">Perspectives et recommandations</h2>
+      <p class="bloc-sub">Vos opinions sur les améliorations souhaitables du cadre réglementaire actuel.</p>
 
-        <!-- Q34 (ex-Q25) -->
-        <div class="card" data-question="q34">
-          <div class="q-number">Q34</div>
-          <div class="q-text">La décision de déclassement est-elle accompagnée d'une explication formelle au travailleur concerné ?</div>
-          <div class="options-list">
-            <label class="opt"><input type="radio" name="q34" value="oui_ecrit"><span>Oui, systématiquement et par écrit</span></label>
-            <label class="opt"><input type="radio" name="q34" value="oui_oral"><span>Oui, oralement</span></label>
-            <label class="opt"><input type="radio" name="q34" value="rarement"><span>Rarement</span></label>
-            <label class="opt"><input type="radio" name="q34" value="non"><span>Non</span></label>
-          </div>
-        </div>
-
-      </div><!-- /#skippable-blocks -->
-
-      <!-- ══════════════════════════════════════
-           BLOC 7 — Perspectives (toujours visible)
-      ══════════════════════════════════════ -->
-      <div class="section-label" data-animate id="bloc7">Bloc 7 &nbsp;—&nbsp; Perspectives et recommandations</div>
-
-      <!-- Q35 (ex-Q26) -->
-      <div class="card" data-question="q35">
-        <div class="q-number">Q35</div>
+      <div class="qcard">
+        <div class="q-num">Q35</div>
         <div class="q-text">Selon vous, quelle serait la durée de conservation minimale raisonnable pour les données du dosimètre opérationnel des non-classés ?</div>
-        <div class="options-list">
-          <label class="opt"><input type="radio" name="q35" value="5_ans"><span>5 ans</span></label>
-          <label class="opt"><input type="radio" name="q35" value="10_ans"><span>10 ans</span></label>
-          <label class="opt"><input type="radio" name="q35" value="30_ans"><span>30 ans</span></label>
-          <label class="opt"><input type="radio" name="q35" value="50_ans"><span>50 ans</span></label>
-          <label class="opt"><input type="radio" name="q35" value="pas_necessaire"><span>Pas nécessaire de les conserver</span></label>
-          <label class="opt"><input type="radio" name="q35" value="autre"><span>Autre</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q35" value="5_ans"><div class="chk"></div><span>5 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q35" value="10_ans"><div class="chk"></div><span>10 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q35" value="30_ans"><div class="chk"></div><span>30 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q35" value="50_ans"><div class="chk"></div><span>50 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q35" value="pas_necessaire"><div class="chk"></div><span>Pas nécessaire de les conserver</span></label>
+          <label class="opt-btn"><input type="radio" name="q35" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
         <input type="text" name="q35_autre" class="text-input other-input" placeholder="Précisez la durée">
       </div>
 
-      <!-- Q36 (ex-Q27) -->
-      <div class="card" data-question="q36">
-        <div class="q-number">Q36</div>
+      <div class="qcard">
+        <div class="q-num">Q36</div>
         <div class="q-text">Seriez-vous favorable à une définition réglementaire quantitative de la notion d'accès « occasionnel » ?</div>
-        <div class="options-list">
-          <label class="opt"><input type="radio" name="q36" value="oui_clarifierait"><span>Oui, cela clarifierait les pratiques</span></label>
-          <label class="opt"><input type="radio" name="q36" value="oui_souple"><span>Oui, mais cela devrait rester souple</span></label>
-          <label class="opt"><input type="radio" name="q36" value="non_souplesse"><span>Non, la souplesse actuelle est préférable</span></label>
-          <label class="opt"><input type="radio" name="q36" value="sans_opinion"><span>Sans opinion</span></label>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q36" value="oui_clarifierait"><div class="chk"></div><span>Oui, cela clarifierait les pratiques</span></label>
+          <label class="opt-btn"><input type="radio" name="q36" value="oui_souple"><div class="chk"></div><span>Oui, mais cela devrait rester souple</span></label>
+          <label class="opt-btn"><input type="radio" name="q36" value="non_souplesse"><div class="chk"></div><span>Non, la souplesse actuelle est préférable</span></label>
+          <label class="opt-btn"><input type="radio" name="q36" value="sans_opinion"><div class="chk"></div><span>Sans opinion</span></label>
         </div>
       </div>
 
-      <!-- Q37 (ex-Q28) -->
-      <div class="card" data-question="q37">
-        <div class="q-number">Q37</div>
+      <div class="qcard">
+        <div class="q-num">Q37</div>
         <div class="q-text">En quelques mots, quelle est selon vous la principale lacune du dispositif actuel concernant les travailleurs non classés accédant aux zones réglementées ?</div>
         <textarea name="q37" class="textarea-input" placeholder="Répondez librement…" rows="4"></textarea>
       </div>
+    </div>
 
-      <!-- ══════════════════════════════════════
-           SECTION FINALE — Identification facultative
-      ══════════════════════════════════════ -->
-      <div id="final-section" class="final-section">
+    <!-- ══ BLOC FINAL — Identification ══ -->
+    <div class="bloc" id="bloc-final">
+      <h2 class="bloc-title">Finalisation</h2>
+      <p class="bloc-sub">Plus qu'une étape — entièrement facultative.</p>
+
+      <div class="final-card">
         <h2>Identification facultative</h2>
         <p class="final-notice">
-          Merci pour votre participation. Si vous souhaitez être identifié(e) dans le mémoire ou recevoir une synthèse des résultats, vous pouvez laisser vos coordonnées ci-dessous. Cette étape est entièrement facultative et sans lien avec vos réponses. Les répondants n'ayant laissé aucune coordonnée seront cités anonymement sous la mention « professionnel(le) de la radioprotection, secteur [X] ».
+          Votre questionnaire peut être soumis de façon totalement anonyme. Si vous souhaitez être identifié(e) dans le mémoire ou recevoir une synthèse des résultats, laissez vos coordonnées ci-dessous. Les répondants anonymes seront cités sous la mention « professionnel(le) de la radioprotection, secteur [X] ».
         </p>
 
-        <div class="form-grid two">
-          <div class="form-field">
+        <div class="fg two">
+          <div>
             <label for="nom_prenom">Nom et prénom</label>
             <input type="text" id="nom_prenom" name="nom_prenom" class="text-input" placeholder="Facultatif" autocomplete="name">
           </div>
-          <div class="form-field">
+          <div>
             <label for="email_contact">Adresse e-mail</label>
             <input type="email" id="email_contact" name="email_contact" class="text-input" placeholder="Facultatif" autocomplete="email">
           </div>
         </div>
-        <div class="form-grid">
-          <div class="form-field">
+        <div class="fg" style="margin-top:14px">
+          <div>
             <label for="fonction_etablissement">Fonction et établissement</label>
             <input type="text" id="fonction_etablissement" name="fonction_etablissement" class="text-input" placeholder="Facultatif">
           </div>
         </div>
 
         <button type="submit" class="btn-submit" id="submit-btn">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
           Envoyer mes réponses
         </button>
       </div>
+    </div>
 
-    </form>
+  </form>
 
-    <!-- QR Code -->
-    <div class="qr-section">
+  <!-- Nav bar -->
+  <div id="nav-bar">
+    <button class="btn-nav btn-prev" id="btn-prev" type="button">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Précédent
+    </button>
+    <button class="btn-nav btn-next" id="btn-next" type="button">
+      Suivant
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+</div><!-- /#form-wrapper -->
+
+<!-- ══════════════════════════════════════
+     CONFIRMATION
+══════════════════════════════════════ -->
+<div id="confirmation">
+  <div style="max-width:520px;margin:0 auto">
+    <div class="check-ring">
+      <svg class="check-svg" width="38" height="38" fill="none" stroke="#2D6A4F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h2>Merci pour votre contribution !</h2>
+    <p class="conf-msg">Votre réponse a bien été enregistrée et sera intégrée à la recherche. Votre expertise contribue à améliorer la radioprotection des travailleurs en France.</p>
+    <div class="conf-anon">
+      🔒 Données traitées de façon strictement confidentielle et anonyme.
+    </div>
+    <div class="qr-card">
       <h3>Partager ce questionnaire</h3>
-      <button id="btn-qrcode" class="btn-secondary" type="button">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/></svg>
-        Générer un QR Code
-      </button>
       <div id="qrcode-container"></div>
       <p id="qrcode-url"></p>
     </div>
-
-  </main>
-
-  <!-- Confirmation -->
-  <div id="confirmation" role="status">
-    <div class="confirm-check">✅</div>
-    <h2>Réponse enregistrée</h2>
-    <p>Votre réponse a bien été enregistrée. Merci pour votre contribution à cette recherche.</p>
-    <p class="author-note">Guillaume Sumann &nbsp;·&nbsp; Mémoire d'ingénieur CNAM &nbsp;·&nbsp; Radioprotection</p>
+    <p class="conf-foot">Guillaume Sumann &nbsp;·&nbsp; Mémoire d'ingénieur CNAM &nbsp;·&nbsp; Radioprotection &nbsp;·&nbsp; 2024–2025</p>
   </div>
+</div>
 
-  <footer>
-    <p>Questionnaire de recherche académique — Mémoire d'ingénieur CNAM · Spécialité Radioprotection</p>
-    <p>Guillaume Sumann · 2024–2025 · Données traitées de façon strictement anonyme</p>
-  </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function () {
+  'use strict';
 
-  <!-- qrcode.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbx7lhbP1rkmDfDeWk4Tbangp2_6OsU2cvcB9wADVLfdgNb265MflNgck2xbUv3t2k39/exec';
+  const BLOC_IDS   = ['bloc-1','bloc-2','bloc-3','bloc-4','bloc-5','bloc-6','bloc-7','bloc-final'];
+  const SKIP_Q5    = ['non','ne_sais_pas'];
+  let cur = 0;
 
-  <script>
-  (function () {
-    'use strict';
+  const navBar  = document.getElementById('nav-bar');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
 
-    /* ──────────────────────────────────────
-       Intersection Observer — animations
-    ────────────────────────────────────── */
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
+  /* ── helpers ── */
+  function q5val() {
+    const el = document.querySelector('input[name="q5"]:checked');
+    return el ? el.value : null;
+  }
 
-    function observeAnimatable() {
-      document.querySelectorAll('.card:not(.conditional), .section-label[data-animate]').forEach((el) => {
-        observer.observe(el);
-      });
-    }
-    observeAnimatable();
+  function showBloc(idx) {
+    BLOC_IDS.forEach((id, i) => document.getElementById(id).classList.toggle('active', i === idx));
+    cur = idx;
+    updateTopbar();
+    const isFinal = cur === BLOC_IDS.length - 1;
+    navBar.classList.toggle('visible', !isFinal);
+    btnPrev.style.visibility = cur === 0 ? 'hidden' : 'visible';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-    /* ──────────────────────────────────────
-       "Autre" text field visibility
-    ────────────────────────────────────── */
-    function setupOtherField(card) {
-      const otherInput = card.querySelector('.other-input');
-      if (!otherInput) return;
+  function updateTopbar() {
+    const skipped = SKIP_Q5.includes(q5val());
+    const total   = skipped ? 3 : 8;
+    let disp;
+    if      (cur === 0)                      disp = 1;
+    else if (skipped && cur === 6)           disp = 2;
+    else if (skipped && cur === 7)           disp = 3;
+    else                                     disp = cur + 1;
 
-      // For radio groups
-      card.querySelectorAll('input[type="radio"]').forEach((radio) => {
-        radio.addEventListener('change', function () {
-          otherInput.style.display = this.value === 'autre' ? 'block' : 'none';
-          if (this.value !== 'autre') otherInput.value = '';
-        });
-      });
+    const isFinal = cur === BLOC_IDS.length - 1;
+    document.getElementById('bloc-label').textContent = isFinal ? 'Finalisation' : `Bloc ${disp} / ${total}`;
+    const pct = Math.round((cur / (BLOC_IDS.length - 1)) * 100);
+    document.getElementById('prog-fill').style.width  = pct + '%';
+    document.getElementById('pct-label').textContent  = pct + ' %';
+  }
 
-      // For checkbox "autre"
-      const autreCb = card.querySelector('input[type="checkbox"][value="autre"]');
-      if (autreCb) {
-        autreCb.addEventListener('change', function () {
-          otherInput.style.display = this.checked ? 'block' : 'none';
-          if (!this.checked) otherInput.value = '';
-        });
-      }
-    }
-
-    document.querySelectorAll('.card').forEach(setupOtherField);
-
-    /* ──────────────────────────────────────
-       Progress tracking
-    ────────────────────────────────────── */
-    const progressFill = document.getElementById('progress-bar-fill');
-    const progressText = document.getElementById('progress-text');
-    const progressContainer = document.getElementById('progress-container');
-    const skippableBlocks = document.getElementById('skippable-blocks');
-
-    function isCardActive(card) {
-      if (card.classList.contains('conditional') && !card.classList.contains('shown')) return false;
-      if (skippableBlocks.classList.contains('hidden') && skippableBlocks.contains(card)) return false;
-      return true;
-    }
-
-    function isCardAnswered(card) {
-      const name = card.dataset.question;
-      if (!name) return false;
-
-      const radios = card.querySelectorAll('input[type="radio"]');
-      const checkboxes = card.querySelectorAll('input[type="checkbox"]');
-      const textarea = card.querySelector('textarea');
-      const textOnly = card.querySelector('input[type="text"]:not(.other-input)');
-
-      if (radios.length) return Array.from(radios).some((r) => r.checked);
-      if (checkboxes.length) return Array.from(checkboxes).some((c) => c.checked);
-      if (textarea) return textarea.value.trim().length > 0;
-      if (textOnly) return textOnly.value.trim().length > 0;
-      return false;
-    }
-
-    function updateProgress() {
-      const allCards = Array.from(document.querySelectorAll('.card[data-question]'));
-      const activeCards = allCards.filter(isCardActive);
-      const answered = activeCards.filter(isCardAnswered).length;
-      const total = activeCards.length;
-
-      const pct = total > 0 ? Math.round((answered / total) * 100) : 0;
-      progressFill.style.width = pct + '%';
-      progressContainer.setAttribute('aria-valuenow', pct);
-
-      const plural = answered > 1 ? 'questions répondues' : 'question répondue';
-      progressText.textContent = answered + ' / ' + total + ' ' + plural;
-    }
-
-    document.querySelectorAll('.card input, .card textarea').forEach((el) => {
-      el.addEventListener('change', updateProgress);
-      el.addEventListener('input', updateProgress);
-    });
-
-    /* ──────────────────────────────────────
-       Q5 — Branchement principal
-    ────────────────────────────────────── */
-    const skipNotice = document.getElementById('skip-notice');
-    const SKIP_VALUES = ['non', 'ne_sais_pas'];
-
-    document.querySelectorAll('input[name="q5"]').forEach((radio) => {
-      radio.addEventListener('change', function () {
-        const skip = SKIP_VALUES.includes(this.value);
-        skippableBlocks.classList.toggle('hidden', skip);
-        skipNotice.classList.toggle('active', skip);
-
-        if (skip) {
-          setTimeout(() => {
-            document.getElementById('bloc7').scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 420);
-        }
-        updateProgress();
-      });
-    });
-
-    /* ──────────────────────────────────────
-       Q17 — Conditionnel Q18
-    ────────────────────────────────────── */
-    const cardQ18 = document.getElementById('card-q18');
-
-    document.querySelectorAll('input[name="q17"]').forEach((radio) => {
-      radio.addEventListener('change', function () {
-        const show = this.value === 'oui_duree_definie';
-        cardQ18.classList.toggle('shown', show);
-        if (show) {
-          observer.observe(cardQ18);
-          updateProgress();
-        }
-      });
-    });
-
-    /* ──────────────────────────────────────
-       Q27 — Conditionnel Q28
-    ────────────────────────────────────── */
-    const cardQ28 = document.getElementById('card-q28');
-
-    document.querySelectorAll('input[name="q27"]').forEach((radio) => {
-      radio.addEventListener('change', function () {
-        const show = this.value === 'oui_avec_constat';
-        cardQ28.classList.toggle('shown', show);
-        if (show) {
-          setupOtherField(cardQ28);
-          observer.observe(cardQ28);
-          updateProgress();
-        }
-      });
-    });
-
-    /* ──────────────────────────────────────
-       Q31 — Conditionnel Q32
-    ────────────────────────────────────── */
-    const cardQ32 = document.getElementById('card-q32');
-
-    document.querySelectorAll('input[name="q31"]').forEach((radio) => {
-      radio.addEventListener('change', function () {
-        const show = ['oui_frequemment', 'oui_occasionnellement'].includes(this.value);
-        cardQ32.classList.toggle('shown', show);
-        if (show) {
-          setupOtherField(cardQ32);
-          observer.observe(cardQ32);
-          updateProgress();
-        }
-      });
-    });
-
-    /* ──────────────────────────────────────
-       Soumission du formulaire — Google Apps Script
-    ────────────────────────────────────── */
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbx7lhbP1rkmDfDeWk4Tbangp2_6OsU2cvcB9wADVLfdgNb265MflNgck2xbUv3t2k39/exec';
-
-    const form = document.getElementById('questionnaire-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const formContainer = document.getElementById('form-container');
-    const confirmation = document.getElementById('confirmation');
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      // Validation Q5
-      const q5Checked = document.querySelector('input[name="q5"]:checked');
-      if (!q5Checked) {
-        const q5Error = document.getElementById('q5-error');
-        q5Error.classList.add('show');
+  /* ── navigation ── */
+  btnNext.addEventListener('click', function () {
+    if (cur === 0) {
+      const v = q5val();
+      if (!v) {
+        document.getElementById('q5-error').classList.add('show');
         document.getElementById('card-q5').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
+      document.getElementById('q5-error').classList.remove('show');
+      if (SKIP_Q5.includes(v)) { showBloc(6); return; }
+    }
+    if (cur < BLOC_IDS.length - 1) showBloc(cur + 1);
+  });
 
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Envoi en cours…';
+  btnPrev.addEventListener('click', function () {
+    if (cur === 0) return;
+    if (cur === 6 && SKIP_Q5.includes(q5val())) { showBloc(0); return; }
+    showBloc(cur - 1);
+  });
 
-      // Construire le payload JSON depuis FormData
-      const formData = new FormData(form);
-      const payload = {};
-      for (const [key, value] of formData.entries()) {
-        const cleanKey = key.replace('[]', '');
-        if (payload[cleanKey] !== undefined) {
-          if (!Array.isArray(payload[cleanKey])) {
-            payload[cleanKey] = [payload[cleanKey]];
-          }
-          payload[cleanKey].push(value);
-        } else {
-          payload[cleanKey] = value;
-        }
-      }
+  /* ── start ── */
+  document.getElementById('btn-start').addEventListener('click', function () {
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('form-wrapper').style.display = 'block';
+    showBloc(0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
 
-      try {
-        await fetch(GAS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
+  /* ── Q5 error clear ── */
+  document.querySelectorAll('input[name="q5"]').forEach(r =>
+    r.addEventListener('change', () => document.getElementById('q5-error').classList.remove('show'))
+  );
 
-        formContainer.style.display = 'none';
-        confirmation.classList.add('shown');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch (err) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Envoyer mes réponses';
-        alert('Une erreur est survenue : ' + err.message);
-      }
+  /* ── conditional cards ── */
+  document.querySelectorAll('input[name="q17"]').forEach(r =>
+    r.addEventListener('change', function () {
+      document.getElementById('card-q18').classList.toggle('shown', this.value === 'oui_duree_definie');
+    })
+  );
+  document.querySelectorAll('input[name="q27"]').forEach(r =>
+    r.addEventListener('change', function () {
+      document.getElementById('card-q28').classList.toggle('shown', this.value === 'oui_avec_constat');
+    })
+  );
+  document.querySelectorAll('input[name="q31"]').forEach(r =>
+    r.addEventListener('change', function () {
+      document.getElementById('card-q32').classList.toggle('shown',
+        ['oui_frequemment','oui_occasionnellement'].includes(this.value));
+    })
+  );
+
+  /* ── "Autre" text fields ── */
+  document.querySelectorAll('.qcard').forEach(card => {
+    const oi = card.querySelector('.other-input');
+    if (!oi) return;
+    card.querySelectorAll('input[type="radio"]').forEach(r =>
+      r.addEventListener('change', function () {
+        oi.style.display = this.value === 'autre' ? 'block' : 'none';
+        if (this.value !== 'autre') oi.value = '';
+      })
+    );
+    const cb = card.querySelector('input[type="checkbox"][value="autre"]');
+    if (cb) cb.addEventListener('change', function () {
+      oi.style.display = this.checked ? 'block' : 'none';
+      if (!this.checked) oi.value = '';
     });
+  });
 
-    // Supprimer l'erreur Q5 dès qu'une réponse est choisie
-    document.querySelectorAll('input[name="q5"]').forEach((r) => {
-      r.addEventListener('change', () => {
-        document.getElementById('q5-error').classList.remove('show');
+  /* ── form submission ── */
+  document.getElementById('questionnaire-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Envoi en cours…';
+
+    const fd = new FormData(this);
+    const payload = {};
+    for (const [k, v] of fd.entries()) {
+      const key = k.replace('[]', '');
+      if (payload[key] !== undefined) {
+        if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
+        payload[key].push(v);
+      } else {
+        payload[key] = v;
+      }
+    }
+
+    try {
+      await fetch(GAS_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-    });
 
-    /* ──────────────────────────────────────
-       QR Code
-    ────────────────────────────────────── */
-    document.getElementById('btn-qrcode').addEventListener('click', function () {
-      const container = document.getElementById('qrcode-container');
-      const urlEl = document.getElementById('qrcode-url');
+      document.getElementById('form-wrapper').style.display = 'none';
+      const conf = document.getElementById('confirmation');
+      conf.classList.add('shown');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
       const url = window.location.href.split('?')[0];
-
-      container.innerHTML = '';
-      new QRCode(container, {
-        text: url,
-        width: 180,
-        height: 180,
-        colorDark: '#1e3a5f',
-        colorLight: '#ffffff',
+      new QRCode(document.getElementById('qrcode-container'), {
+        text: url, width: 160, height: 160,
+        colorDark: '#1B4F8A', colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.M,
       });
+      document.getElementById('qrcode-url').textContent = url;
 
-      urlEl.textContent = url;
-      this.style.display = 'none';
-    });
+    } catch (err) {
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Envoyer mes réponses';
+      alert('Erreur lors de l\'envoi : ' + err.message);
+    }
+  });
 
-    /* ──────────────────────────────────────
-       Animation spin keyframe (bouton submit)
-    ────────────────────────────────────── */
-    const style = document.createElement('style');
-    style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-    document.head.appendChild(style);
+  /* ── init ── */
+  updateTopbar();
+  const s = document.createElement('style');
+  s.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+  document.head.appendChild(s);
 
-    /* ──────────────────────────────────────
-       Init progress
-    ────────────────────────────────────── */
-    updateProgress();
-  })();
-  </script>
-
+})();
+</script>
 </body>
 </html>
