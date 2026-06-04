@@ -183,6 +183,29 @@
     .error-msg { font-size: .77rem; color: #DC2626; margin-top: 8px; display: none; }
     .error-msg.show { display: block; }
 
+    /* ── Article dépliable ── */
+    details.article { margin-top: 14px; }
+    details.article summary {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .78rem; font-weight: 600; color: var(--accent);
+      cursor: pointer; user-select: none; list-style: none;
+    }
+    details.article summary::-webkit-details-marker { display: none; }
+    details.article summary::before {
+      content: '▶'; font-size: .6rem; transition: transform .2s;
+    }
+    details.article[open] summary::before { transform: rotate(90deg); }
+    details.article .article-body {
+      margin-top: 10px;
+      background: #f0f4f8;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      font-size: .82rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
     /* ── NAV BAR ── */
     #nav-bar {
       position: fixed; bottom: 0; left: 0; right: 0; display: none;
@@ -384,6 +407,12 @@
       <div class="qcard">
         <div class="q-num">Q6</div>
         <div class="q-text">Connaissez-vous l'article R. 4451-32 du Code du travail encadrant l'accès des non-classés aux zones réglementées ?</div>
+        <details class="article">
+          <summary>Voir le texte de l'article</summary>
+          <div class="article-body">
+            <strong>Art. R. 4451-32</strong> — L'employeur peut autoriser des travailleurs non classés à accéder à des zones réglementées, sous réserve que cette exposition soit justifiée, que le travailleur ait reçu les informations et instructions nécessaires, que l'exposition soit maintenue aussi faible que raisonnablement possible, et que les doses reçues soient inférieures aux limites fixées pour les personnes du public. L'accès doit rester occasionnel et être autorisé nominativement par l'employeur, après avis du médecin du travail.
+          </div>
+        </details>
         <div class="opts">
           <label class="opt-btn"><input type="radio" name="q6" value="oui_applique"><div class="chk"></div><span>Oui, je l'applique régulièrement</span></label>
           <label class="opt-btn"><input type="radio" name="q6" value="oui_pas_formel"><div class="chk"></div><span>Oui, je le connais mais ne l'applique pas formellement</span></label>
@@ -395,6 +424,12 @@
       <div class="qcard">
         <div class="q-num">Q7</div>
         <div class="q-text">Connaissez-vous l'instruction DGT/ASN n°2018/229 (§10.5) qui introduit la notion d'accès « occasionnel » pour les non-classés ?</div>
+        <details class="article">
+          <summary>Voir le texte de l'instruction</summary>
+          <div class="article-body">
+            <strong>Instruction DGT/ASN n°2018/229, §10.5</strong> — Un travailleur non classé peut accéder de façon occasionnelle à une zone réglementée sous la responsabilité de l'employeur. La notion d'occasionnel n'est pas définie quantitativement dans les textes. Selon la position commune DGT/ASNR (2024), le critère est fonctionnel : l'accès ne doit pas s'inscrire dans le cadre habituel du travail du salarié.
+          </div>
+        </details>
         <div class="opts">
           <label class="opt-btn"><input type="radio" name="q7" value="oui_reference"><div class="chk"></div><span>Oui, je l'utilise comme référence</span></label>
           <label class="opt-btn"><input type="radio" name="q7" value="oui_connaissance"><div class="chk"></div><span>Oui, j'en ai connaissance</span></label>
