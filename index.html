@@ -32,13 +32,24 @@
 
     /* ── LANDING ── */
     #landing {
-      min-height: 100vh; background: var(--dark);
+      min-height: 100vh;
+      background: url('hero.jpg.png') center center / cover no-repeat;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 48px 24px; text-align: center; position: relative; overflow: hidden;
     }
     #landing::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 25%, rgba(27,79,138,.45) 0%, transparent 68%);
+      background: linear-gradient(
+        160deg,
+        rgba(13,27,42,.88) 0%,
+        rgba(13,27,42,.75) 50%,
+        rgba(13,27,42,.92) 100%
+      );
+      pointer-events: none;
+    }
+    #landing::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(27,79,138,.35) 0%, transparent 65%);
       pointer-events: none;
     }
     .l-inner { position: relative; z-index: 1; max-width: 660px; }
@@ -86,7 +97,8 @@
     .btn-start:hover { transform: translateY(-2px); box-shadow: 0 14px 42px rgba(0,0,0,.4); }
     .badge-cnam {
       position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
-      font-size: .7rem; color: rgba(255,255,255,.3); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+      font-size: .7rem; color: rgba(255,255,255,.4); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+      z-index: 1;
     }
 
     /* ── FORM WRAPPER ── */
