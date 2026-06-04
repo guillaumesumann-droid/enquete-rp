@@ -295,7 +295,7 @@
     <div class="stats-row">
       <div class="stat-pill">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>
-        33 questions
+        32 questions
       </div>
       <div class="stat-pill">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -341,7 +341,7 @@
       <p class="bloc-sub">Questions facultatives pour contextualiser les résultats de l'étude.</p>
 
       <div class="qcard">
-        <div class="q-num">Q1 · Facultatif</div>
+        <div class="q-num">Q1</div>
         <div class="q-text">Quel est votre rôle principal ?</div>
         <div class="opts">
           <label class="opt-btn"><input type="radio" name="q1" value="PCR"><div class="chk"></div><span>Personne Compétente en Radioprotection (PCR)</span></label>
@@ -353,7 +353,7 @@
       </div>
 
       <div class="qcard">
-        <div class="q-num">Q2 · Facultatif</div>
+        <div class="q-num">Q2</div>
         <div class="q-text">Dans quel secteur exercez-vous principalement ?</div>
         <div class="opts">
           <label class="opt-btn"><input type="radio" name="q2" value="nucleaire"><div class="chk"></div><span>Industrie nucléaire (INB, prestataire nucléaire)</span></label>
@@ -368,7 +368,7 @@
       </div>
 
       <div class="qcard">
-        <div class="q-num">Q3 · Facultatif</div>
+        <div class="q-num">Q3</div>
         <div class="q-text">Quelle est votre expérience dans le domaine de la radioprotection ?</div>
         <div class="opts">
           <label class="opt-btn"><input type="radio" name="q3" value="moins_5"><div class="chk"></div><span>Moins de 5 ans</span></label>
@@ -378,7 +378,7 @@
       </div>
 
       <div class="qcard">
-        <div class="q-num">Q4 · Facultatif</div>
+        <div class="q-num">Q4</div>
         <div class="q-text">Quelle est la taille de votre établissement ou entreprise ?</div>
         <div class="opts">
           <label class="opt-btn"><input type="radio" name="q4" value="moins_50"><div class="chk"></div><span>Moins de 50 personnes</span></label>
@@ -523,52 +523,40 @@
 
       <div class="qcard">
         <div class="q-num">Q14</div>
-        <div class="q-text">Le dosimètre opérationnel est-il effectivement porté par les non-classés lors de leurs accès en zone contrôlée ?</div>
+        <div class="q-text">Un registre des accès est-il tenu pour les travailleurs non classés entrant en zones réglementées ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q14" value="oui_systematiquement"><div class="chk"></div><span>Oui, systématiquement</span></label>
-          <label class="opt-btn"><input type="radio" name="q14" value="oui_plupart"><div class="chk"></div><span>Oui, la plupart du temps</span></label>
-          <label class="opt-btn"><input type="radio" name="q14" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q14" value="oui_tous"><div class="chk"></div><span>Oui, pour tous les accès</span></label>
+          <label class="opt-btn"><input type="radio" name="q14" value="oui_certains"><div class="chk"></div><span>Oui, pour certains accès seulement</span></label>
           <label class="opt-btn"><input type="radio" name="q14" value="non"><div class="chk"></div><span>Non</span></label>
-          <label class="opt-btn"><input type="radio" name="q14" value="pas_disponibles"><div class="chk"></div><span>Nous n'avons pas de dosimètres opérationnels disponibles pour les non-classés</span></label>
         </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q15</div>
-        <div class="q-text">Un registre des accès est-il tenu pour les travailleurs non classés entrant en zones réglementées ?</div>
-        <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q15" value="oui_tous"><div class="chk"></div><span>Oui, pour tous les accès</span></label>
-          <label class="opt-btn"><input type="radio" name="q15" value="oui_certains"><div class="chk"></div><span>Oui, pour certains accès seulement</span></label>
-          <label class="opt-btn"><input type="radio" name="q15" value="non"><div class="chk"></div><span>Non</span></label>
-        </div>
-      </div>
-
-      <div class="qcard">
-        <div class="q-num">Q16</div>
         <div class="q-text">Les données du dosimètre opérationnel des non-classés sont-elles conservées dans votre établissement ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q16" value="oui_duree_definie"><div class="chk"></div><span>Oui, avec une durée de conservation définie</span></label>
-          <label class="opt-btn"><input type="radio" name="q16" value="oui_sans_duree"><div class="chk"></div><span>Oui, mais sans durée définie</span></label>
-          <label class="opt-btn"><input type="radio" name="q16" value="non"><div class="chk"></div><span>Non, elles ne sont pas conservées</span></label>
-          <label class="opt-btn"><input type="radio" name="q16" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="oui_duree_definie"><div class="chk"></div><span>Oui, avec une durée de conservation définie</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="oui_sans_duree"><div class="chk"></div><span>Oui, mais sans durée définie</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="non"><div class="chk"></div><span>Non, elles ne sont pas conservées</span></label>
+          <label class="opt-btn"><input type="radio" name="q15" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
       </div>
 
-      <!-- Q17 conditionnel Q16 -->
-      <div class="qcard conditional" id="card-q17">
-        <div class="q-num">Q17 · Question complémentaire</div>
+      <!-- Q16 conditionnel Q15 -->
+      <div class="qcard conditional" id="card-q16">
+        <div class="q-num">Q16 · Question complémentaire</div>
         <div class="q-text">Quelle durée de conservation est appliquée ?</div>
-        <input type="text" name="q17" class="text-input" placeholder="Ex. : 50 ans, durée de vie professionnelle + 10 ans…">
+        <input type="text" name="q16" class="text-input" placeholder="Ex. : 50 ans, durée de vie professionnelle + 10 ans…">
       </div>
 
       <div class="qcard">
-        <div class="q-num">Q18</div>
+        <div class="q-num">Q17</div>
         <div class="q-text">Les travailleurs prestataires non classés intervenant sur plusieurs sites font-ils l'objet d'un suivi dosimétrique cumulé entre les différents employeurs ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q18" value="oui_cumule"><div class="chk"></div><span>Oui, un suivi cumulé est organisé</span></label>
-          <label class="opt-btn"><input type="radio" name="q18" value="non_independant"><div class="chk"></div><span>Non, chaque employeur gère ses données de façon indépendante</span></label>
-          <label class="opt-btn"><input type="radio" name="q18" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
-          <label class="opt-btn"><input type="radio" name="q18" value="non_applicable"><div class="chk"></div><span>Non applicable — pas de prestataires non classés en zones réglementées</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="oui_cumule"><div class="chk"></div><span>Oui, un suivi cumulé est organisé</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="non_independant"><div class="chk"></div><span>Non, chaque employeur gère ses données de façon indépendante</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+          <label class="opt-btn"><input type="radio" name="q17" value="non_applicable"><div class="chk"></div><span>Non applicable — pas de prestataires non classés en zones réglementées</span></label>
         </div>
       </div>
     </div>
@@ -579,85 +567,85 @@
       <p class="bloc-sub">Facteurs influençant les décisions et rôle du médecin du travail.</p>
 
       <div class="qcard">
-        <div class="q-num">Q19</div>
+        <div class="q-num">Q18</div>
         <div class="q-text">Dans votre expérience, les décisions de non-classement sont-elles influencées par des considérations économiques ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q19" value="oui_moteur_principal"><div class="chk"></div><span>Oui, c'est souvent le moteur principal</span></label>
-          <label class="opt-btn"><input type="radio" name="q19" value="oui_facteur_important"><div class="chk"></div><span>Oui, c'est régulièrement un facteur important, parfois déterminant</span></label>
-          <label class="opt-btn"><input type="radio" name="q19" value="oui_facteur"><div class="chk"></div><span>Oui, c'est un facteur parmi d'autres</span></label>
-          <label class="opt-btn"><input type="radio" name="q19" value="non_dosimetrique"><div class="chk"></div><span>Non, les décisions reposent uniquement sur l'évaluation dosimétrique</span></label>
-          <label class="opt-btn"><input type="radio" name="q19" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+          <label class="opt-btn"><input type="radio" name="q18" value="oui_moteur_principal"><div class="chk"></div><span>Oui, c'est souvent le moteur principal</span></label>
+          <label class="opt-btn"><input type="radio" name="q18" value="oui_facteur_important"><div class="chk"></div><span>Oui, c'est régulièrement un facteur important, parfois déterminant</span></label>
+          <label class="opt-btn"><input type="radio" name="q18" value="oui_facteur"><div class="chk"></div><span>Oui, c'est un facteur parmi d'autres</span></label>
+          <label class="opt-btn"><input type="radio" name="q18" value="non_dosimetrique"><div class="chk"></div><span>Non, les décisions reposent uniquement sur l'évaluation dosimétrique</span></label>
+          <label class="opt-btn"><input type="radio" name="q18" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+        </div>
+      </div>
+
+      <div class="qcard">
+        <div class="q-num">Q19</div>
+        <div class="q-text">Avez-vous observé des situations où un travailleur aurait dû être classé mais ne l'a pas été ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q19" value="oui_plusieurs"><div class="chk"></div><span>Oui, plusieurs fois</span></label>
+          <label class="opt-btn"><input type="radio" name="q19" value="oui_une_fois"><div class="chk"></div><span>Oui, une fois</span></label>
+          <label class="opt-btn"><input type="radio" name="q19" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q19" value="pas_en_mesure"><div class="chk"></div><span>Je ne suis pas en mesure de l'évaluer</span></label>
         </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q20</div>
-        <div class="q-text">Avez-vous observé des situations où un travailleur aurait dû être classé mais ne l'a pas été ?</div>
+        <div class="q-text">Selon vous, quels sont les principaux freins au déclassement d'un travailleur dont l'exposition est inférieure aux seuils ?<span class="q-hint">Plusieurs réponses possibles</span></div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q20" value="oui_plusieurs"><div class="chk"></div><span>Oui, plusieurs fois</span></label>
-          <label class="opt-btn"><input type="radio" name="q20" value="oui_une_fois"><div class="chk"></div><span>Oui, une fois</span></label>
-          <label class="opt-btn"><input type="radio" name="q20" value="non"><div class="chk"></div><span>Non</span></label>
-          <label class="opt-btn"><input type="radio" name="q20" value="pas_en_mesure"><div class="chk"></div><span>Je ne suis pas en mesure de l'évaluer</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="resistance_travailleur"><div class="chk"></div><span>Résistance du travailleur (perte de prime, de statut)</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="resistance_visites"><div class="chk"></div><span>Résistance liée à la réduction de la fréquence des visites médicales</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="resistance_encadrement"><div class="chk"></div><span>Résistance de l'encadrement</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="complexite_admin"><div class="chk"></div><span>Complexité administrative du déclassement</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="risque_juridique"><div class="chk"></div><span>Crainte d'un risque juridique pour l'employeur</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="pas_procedure"><div class="chk"></div><span>Absence de procédure formalisée dans l'établissement</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q20[]" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
+        <input type="text" name="q20_autre" class="text-input other-input" placeholder="Précisez">
       </div>
 
       <div class="qcard">
         <div class="q-num">Q21</div>
-        <div class="q-text">Selon vous, quels sont les principaux freins au déclassement d'un travailleur dont l'exposition est inférieure aux seuils ?<span class="q-hint">Plusieurs réponses possibles</span></div>
+        <div class="q-text">Le coût de gestion des non-classés accédant aux zones réglementées est-il budgété dans votre établissement ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="resistance_travailleur"><div class="chk"></div><span>Résistance du travailleur (perte de prime, de statut)</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="resistance_visites"><div class="chk"></div><span>Résistance liée à la réduction de la fréquence des visites médicales</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="resistance_encadrement"><div class="chk"></div><span>Résistance de l'encadrement</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="complexite_admin"><div class="chk"></div><span>Complexité administrative du déclassement</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="risque_juridique"><div class="chk"></div><span>Crainte d'un risque juridique pour l'employeur</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="pas_procedure"><div class="chk"></div><span>Absence de procédure formalisée dans l'établissement</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q21[]" value="autre"><div class="chk"></div><span>Autre</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="oui_explicite"><div class="chk"></div><span>Oui, de façon explicite</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="partiellement"><div class="chk"></div><span>Partiellement</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="non"><div class="chk"></div><span>Non, ces coûts sont absorbés sans identification</span></label>
+          <label class="opt-btn"><input type="radio" name="q21" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
-        <input type="text" name="q21_autre" class="text-input other-input" placeholder="Précisez">
       </div>
 
       <div class="qcard">
         <div class="q-num">Q22</div>
-        <div class="q-text">Le coût de gestion des non-classés accédant aux zones réglementées est-il budgété dans votre établissement ?</div>
+        <div class="q-text">Le médecin du travail est-il systématiquement consulté avant toute décision de classement ou de non-classement ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q22" value="oui_explicite"><div class="chk"></div><span>Oui, de façon explicite</span></label>
-          <label class="opt-btn"><input type="radio" name="q22" value="partiellement"><div class="chk"></div><span>Partiellement</span></label>
-          <label class="opt-btn"><input type="radio" name="q22" value="non"><div class="chk"></div><span>Non, ces coûts sont absorbés sans identification</span></label>
-          <label class="opt-btn"><input type="radio" name="q22" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+          <label class="opt-btn"><input type="radio" name="q22" value="oui_formalise"><div class="chk"></div><span>Oui, systématiquement et son avis est formalisé</span></label>
+          <label class="opt-btn"><input type="radio" name="q22" value="oui_informel"><div class="chk"></div><span>Oui, mais de façon informelle</span></label>
+          <label class="opt-btn"><input type="radio" name="q22" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q22" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q22" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas / pas de médecin du travail dédié</span></label>
         </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q23</div>
-        <div class="q-text">Le médecin du travail est-il systématiquement consulté avant toute décision de classement ou de non-classement ?</div>
+        <div class="q-text">Le médecin du travail a-t-il accès à l'évaluation individuelle préalable (EIERI) réalisée par la PCR avant de donner son avis sur le classement ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q23" value="oui_formalise"><div class="chk"></div><span>Oui, systématiquement et son avis est formalisé</span></label>
-          <label class="opt-btn"><input type="radio" name="q23" value="oui_informel"><div class="chk"></div><span>Oui, mais de façon informelle</span></label>
-          <label class="opt-btn"><input type="radio" name="q23" value="rarement"><div class="chk"></div><span>Rarement</span></label>
-          <label class="opt-btn"><input type="radio" name="q23" value="non"><div class="chk"></div><span>Non</span></label>
-          <label class="opt-btn"><input type="radio" name="q23" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas / pas de médecin du travail dédié</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="oui_systematiquement"><div class="chk"></div><span>Oui, systématiquement</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="oui_parfois"><div class="chk"></div><span>Oui, parfois</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="non_cosigne"><div class="chk"></div><span>Non, il cosigne sans avoir accès à l'évaluation</span></label>
+          <label class="opt-btn"><input type="radio" name="q23" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q24</div>
-        <div class="q-text">Le médecin du travail a-t-il accès à l'évaluation individuelle préalable (EIERI) réalisée par la PCR avant de donner son avis sur le classement ?</div>
-        <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q24" value="oui_systematiquement"><div class="chk"></div><span>Oui, systématiquement</span></label>
-          <label class="opt-btn"><input type="radio" name="q24" value="oui_parfois"><div class="chk"></div><span>Oui, parfois</span></label>
-          <label class="opt-btn"><input type="radio" name="q24" value="non_cosigne"><div class="chk"></div><span>Non, il cosigne sans avoir accès à l'évaluation</span></label>
-          <label class="opt-btn"><input type="radio" name="q24" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
-        </div>
-      </div>
-
-      <div class="qcard">
-        <div class="q-num">Q25</div>
         <div class="q-text">Comment qualifieriez-vous la collaboration entre la PCR et le médecin du travail sur les questions de classement ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q25" value="effective_reguliere"><div class="chk"></div><span>Effective et régulière</span></label>
-          <label class="opt-btn"><input type="radio" name="q25" value="existante_insuffisante"><div class="chk"></div><span>Existante mais insuffisante</span></label>
-          <label class="opt-btn"><input type="radio" name="q25" value="quasi_inexistante"><div class="chk"></div><span>Quasi inexistante</span></label>
-          <label class="opt-btn"><input type="radio" name="q25" value="pas_visibilite"><div class="chk"></div><span>Je n'ai pas de visibilité sur ce point</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="effective_reguliere"><div class="chk"></div><span>Effective et régulière</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="existante_insuffisante"><div class="chk"></div><span>Existante mais insuffisante</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="quasi_inexistante"><div class="chk"></div><span>Quasi inexistante</span></label>
+          <label class="opt-btn"><input type="radio" name="q24" value="pas_visibilite"><div class="chk"></div><span>Je n'ai pas de visibilité sur ce point</span></label>
         </div>
       </div>
     </div>
@@ -668,49 +656,49 @@
       <p class="bloc-sub">Résultats d'inspections et fréquence des non-conformités observées.</p>
 
       <div class="qcard">
-        <div class="q-num">Q26</div>
+        <div class="q-num">Q25</div>
         <div class="q-text">Votre établissement a-t-il fait l'objet d'une inspection ASNR ou DREETS portant sur la gestion des non-classés en zones réglementées ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q26" value="oui_avec_constat"><div class="chk"></div><span>Oui, avec constat de non-conformité</span></label>
-          <label class="opt-btn"><input type="radio" name="q26" value="oui_sans_constat"><div class="chk"></div><span>Oui, sans constat de non-conformité</span></label>
-          <label class="opt-btn"><input type="radio" name="q26" value="non"><div class="chk"></div><span>Non</span></label>
-          <label class="opt-btn"><input type="radio" name="q26" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="oui_avec_constat"><div class="chk"></div><span>Oui, avec constat de non-conformité</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="oui_sans_constat"><div class="chk"></div><span>Oui, sans constat de non-conformité</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q25" value="ne_sais_pas"><div class="chk"></div><span>Je ne sais pas</span></label>
         </div>
       </div>
 
-      <!-- Q27 conditionnel Q26 -->
-      <div class="qcard conditional" id="card-q27">
-        <div class="q-num">Q27 · Question complémentaire</div>
+      <!-- Q26 conditionnel Q25 -->
+      <div class="qcard conditional" id="card-q26">
+        <div class="q-num">Q26 · Question complémentaire</div>
         <div class="q-text">Quel type d'écart a été relevé ?<span class="q-hint">Plusieurs réponses possibles</span></div>
         <div class="opts">
-          <label class="opt-btn"><input type="checkbox" name="q27[]" value="absence_autorisation"><div class="chk"></div><span>Absence d'autorisation d'accès formalisée</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q27[]" value="autorisation_pcr"><div class="chk"></div><span>Autorisation signée par la PCR au lieu de l'employeur</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q27[]" value="defaut_dosimetre"><div class="chk"></div><span>Défaut de port du dosimètre opérationnel</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q27[]" value="absence_evaluation"><div class="chk"></div><span>Absence d'évaluation individuelle</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q27[]" value="autre"><div class="chk"></div><span>Autre</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q26[]" value="absence_autorisation"><div class="chk"></div><span>Absence d'autorisation d'accès formalisée</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q26[]" value="autorisation_pcr"><div class="chk"></div><span>Autorisation signée par la PCR au lieu de l'employeur</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q26[]" value="defaut_dosimetre"><div class="chk"></div><span>Défaut de port du dosimètre opérationnel</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q26[]" value="absence_evaluation"><div class="chk"></div><span>Absence d'évaluation individuelle</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q26[]" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
-        <input type="text" name="q27_autre" class="text-input other-input" placeholder="Précisez l'écart">
+        <input type="text" name="q26_autre" class="text-input other-input" placeholder="Précisez l'écart">
+      </div>
+
+      <div class="qcard">
+        <div class="q-num">Q27</div>
+        <div class="q-text">Selon vous, le défaut de port du dosimètre opérationnel en zone contrôlée est-il un problème fréquent ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q27" value="oui_tres_frequent"><div class="chk"></div><span>Oui, très fréquent dans mon secteur</span></label>
+          <label class="opt-btn"><input type="radio" name="q27" value="oui_occasionnel"><div class="chk"></div><span>Oui, occasionnel</span></label>
+          <label class="opt-btn"><input type="radio" name="q27" value="non_bien_applique"><div class="chk"></div><span>Non, c'est bien appliqué dans mon secteur</span></label>
+          <label class="opt-btn"><input type="radio" name="q27" value="pas_visibilite"><div class="chk"></div><span>Je n'ai pas de visibilité sur ce point</span></label>
+        </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q28</div>
-        <div class="q-text">Selon vous, le défaut de port du dosimètre opérationnel en zone contrôlée est-il un problème fréquent ?</div>
-        <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q28" value="oui_tres_frequent"><div class="chk"></div><span>Oui, très fréquent dans mon secteur</span></label>
-          <label class="opt-btn"><input type="radio" name="q28" value="oui_occasionnel"><div class="chk"></div><span>Oui, occasionnel</span></label>
-          <label class="opt-btn"><input type="radio" name="q28" value="non_bien_applique"><div class="chk"></div><span>Non, c'est bien appliqué dans mon secteur</span></label>
-          <label class="opt-btn"><input type="radio" name="q28" value="pas_visibilite"><div class="chk"></div><span>Je n'ai pas de visibilité sur ce point</span></label>
-        </div>
-      </div>
-
-      <div class="qcard">
-        <div class="q-num">Q29</div>
         <div class="q-text">Avez-vous connaissance de situations où l'absence de traçabilité dosimétrique d'un non-classé a posé un problème juridique ou médical a posteriori ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q29" value="oui_mon_etablissement"><div class="chk"></div><span>Oui, directement dans mon établissement</span></label>
-          <label class="opt-btn"><input type="radio" name="q29" value="oui_autre_etablissement"><div class="chk"></div><span>Oui, dans un autre établissement dont j'ai connaissance</span></label>
-          <label class="opt-btn"><input type="radio" name="q29" value="non"><div class="chk"></div><span>Non</span></label>
-          <label class="opt-btn"><input type="radio" name="q29" value="prefere_pas"><div class="chk"></div><span>Je préfère ne pas répondre</span></label>
+          <label class="opt-btn"><input type="radio" name="q28" value="oui_mon_etablissement"><div class="chk"></div><span>Oui, directement dans mon établissement</span></label>
+          <label class="opt-btn"><input type="radio" name="q28" value="oui_autre_etablissement"><div class="chk"></div><span>Oui, dans un autre établissement dont j'ai connaissance</span></label>
+          <label class="opt-btn"><input type="radio" name="q28" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q28" value="prefere_pas"><div class="chk"></div><span>Je préfère ne pas répondre</span></label>
         </div>
       </div>
     </div>
@@ -721,49 +709,49 @@
       <p class="bloc-sub">Résistances au déclassement et comportements observés dans la pratique.</p>
 
       <div class="qcard">
-        <div class="q-num">Q30</div>
+        <div class="q-num">Q29</div>
         <div class="q-text">Avez-vous observé des résistances de la part de travailleurs lors d'un déclassement ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q30" value="pas_confronte"><div class="chk"></div><span>Je n'ai pas été confronté(e) à cette situation</span></label>
-          <label class="opt-btn"><input type="radio" name="q30" value="oui_frequemment"><div class="chk"></div><span>Oui, fréquemment</span></label>
-          <label class="opt-btn"><input type="radio" name="q30" value="oui_occasionnellement"><div class="chk"></div><span>Oui, occasionnellement</span></label>
-          <label class="opt-btn"><input type="radio" name="q30" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="pas_confronte"><div class="chk"></div><span>Je n'ai pas été confronté(e) à cette situation</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="oui_frequemment"><div class="chk"></div><span>Oui, fréquemment</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="oui_occasionnellement"><div class="chk"></div><span>Oui, occasionnellement</span></label>
+          <label class="opt-btn"><input type="radio" name="q29" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
       </div>
 
-      <!-- Q31 conditionnel Q30 -->
-      <div class="qcard conditional" id="card-q31">
-        <div class="q-num">Q31 · Question complémentaire</div>
+      <!-- Q30 conditionnel Q29 -->
+      <div class="qcard conditional" id="card-q30">
+        <div class="q-num">Q30 · Question complémentaire</div>
         <div class="q-text">Sur quoi portait principalement la résistance ?<span class="q-hint">Plusieurs réponses possibles</span></div>
         <div class="opts">
-          <label class="opt-btn"><input type="checkbox" name="q31[]" value="perte_prime"><div class="chk"></div><span>Perte de la prime d'exposition</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q31[]" value="visites_medicales"><div class="chk"></div><span>Réduction de la fréquence des visites médicales</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q31[]" value="perte_statut"><div class="chk"></div><span>Sentiment de perte de statut professionnel</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q31[]" value="inquietude_risque"><div class="chk"></div><span>Inquiétude sur la réalité du risque résiduel</span></label>
-          <label class="opt-btn"><input type="checkbox" name="q31[]" value="autre"><div class="chk"></div><span>Autre</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q30[]" value="perte_prime"><div class="chk"></div><span>Perte de la prime d'exposition</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q30[]" value="visites_medicales"><div class="chk"></div><span>Réduction de la fréquence des visites médicales</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q30[]" value="perte_statut"><div class="chk"></div><span>Sentiment de perte de statut professionnel</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q30[]" value="inquietude_risque"><div class="chk"></div><span>Inquiétude sur la réalité du risque résiduel</span></label>
+          <label class="opt-btn"><input type="checkbox" name="q30[]" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
-        <input type="text" name="q31_autre" class="text-input other-input" placeholder="Précisez">
+        <input type="text" name="q30_autre" class="text-input other-input" placeholder="Précisez">
+      </div>
+
+      <div class="qcard">
+        <div class="q-num">Q31</div>
+        <div class="q-text">Le retrait du dosimètre lors d'un déclassement modifie-t-il le comportement du travailleur vis-à-vis du risque radiologique ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q31" value="oui_vigilance"><div class="chk"></div><span>Oui, il tend à diminuer la vigilance</span></label>
+          <label class="opt-btn"><input type="radio" name="q31" value="non_identique"><div class="chk"></div><span>Non, le comportement reste identique</span></label>
+          <label class="opt-btn"><input type="radio" name="q31" value="depend_communication"><div class="chk"></div><span>Cela dépend de la façon dont le déclassement est communiqué</span></label>
+          <label class="opt-btn"><input type="radio" name="q31" value="pas_observe"><div class="chk"></div><span>Je n'ai pas observé ce phénomène</span></label>
+        </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q32</div>
-        <div class="q-text">Le retrait du dosimètre lors d'un déclassement modifie-t-il le comportement du travailleur vis-à-vis du risque radiologique ?</div>
-        <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q32" value="oui_vigilance"><div class="chk"></div><span>Oui, il tend à diminuer la vigilance</span></label>
-          <label class="opt-btn"><input type="radio" name="q32" value="non_identique"><div class="chk"></div><span>Non, le comportement reste identique</span></label>
-          <label class="opt-btn"><input type="radio" name="q32" value="depend_communication"><div class="chk"></div><span>Cela dépend de la façon dont le déclassement est communiqué</span></label>
-          <label class="opt-btn"><input type="radio" name="q32" value="pas_observe"><div class="chk"></div><span>Je n'ai pas observé ce phénomène</span></label>
-        </div>
-      </div>
-
-      <div class="qcard">
-        <div class="q-num">Q33</div>
         <div class="q-text">La décision de déclassement est-elle accompagnée d'une explication formelle au travailleur concerné ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q33" value="oui_ecrit"><div class="chk"></div><span>Oui, systématiquement et par écrit</span></label>
-          <label class="opt-btn"><input type="radio" name="q33" value="oui_oral"><div class="chk"></div><span>Oui, oralement</span></label>
-          <label class="opt-btn"><input type="radio" name="q33" value="rarement"><div class="chk"></div><span>Rarement</span></label>
-          <label class="opt-btn"><input type="radio" name="q33" value="non"><div class="chk"></div><span>Non</span></label>
+          <label class="opt-btn"><input type="radio" name="q32" value="oui_ecrit"><div class="chk"></div><span>Oui, systématiquement et par écrit</span></label>
+          <label class="opt-btn"><input type="radio" name="q32" value="oui_oral"><div class="chk"></div><span>Oui, oralement</span></label>
+          <label class="opt-btn"><input type="radio" name="q32" value="rarement"><div class="chk"></div><span>Rarement</span></label>
+          <label class="opt-btn"><input type="radio" name="q32" value="non"><div class="chk"></div><span>Non</span></label>
         </div>
       </div>
     </div>
@@ -774,34 +762,34 @@
       <p class="bloc-sub">Vos opinions sur les améliorations souhaitables du cadre réglementaire actuel.</p>
 
       <div class="qcard">
-        <div class="q-num">Q34</div>
+        <div class="q-num">Q33</div>
         <div class="q-text">Selon vous, quelle serait la durée de conservation minimale raisonnable pour les données du dosimètre opérationnel des non-classés ?</div>
         <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q34" value="5_ans"><div class="chk"></div><span>5 ans</span></label>
-          <label class="opt-btn"><input type="radio" name="q34" value="10_ans"><div class="chk"></div><span>10 ans</span></label>
-          <label class="opt-btn"><input type="radio" name="q34" value="30_ans"><div class="chk"></div><span>30 ans</span></label>
-          <label class="opt-btn"><input type="radio" name="q34" value="50_ans"><div class="chk"></div><span>50 ans</span></label>
-          <label class="opt-btn"><input type="radio" name="q34" value="pas_necessaire"><div class="chk"></div><span>Pas nécessaire de les conserver</span></label>
-          <label class="opt-btn"><input type="radio" name="q34" value="autre"><div class="chk"></div><span>Autre</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="5_ans"><div class="chk"></div><span>5 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="10_ans"><div class="chk"></div><span>10 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="30_ans"><div class="chk"></div><span>30 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="50_ans"><div class="chk"></div><span>50 ans</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="pas_necessaire"><div class="chk"></div><span>Pas nécessaire de les conserver</span></label>
+          <label class="opt-btn"><input type="radio" name="q33" value="autre"><div class="chk"></div><span>Autre</span></label>
         </div>
-        <input type="text" name="q34_autre" class="text-input other-input" placeholder="Précisez la durée">
+        <input type="text" name="q33_autre" class="text-input other-input" placeholder="Précisez la durée">
+      </div>
+
+      <div class="qcard">
+        <div class="q-num">Q34</div>
+        <div class="q-text">Seriez-vous favorable à une définition réglementaire quantitative de la notion d'accès « occasionnel » ?</div>
+        <div class="opts">
+          <label class="opt-btn"><input type="radio" name="q34" value="oui_clarifierait"><div class="chk"></div><span>Oui, cela clarifierait les pratiques</span></label>
+          <label class="opt-btn"><input type="radio" name="q34" value="oui_souple"><div class="chk"></div><span>Oui, mais cela devrait rester souple</span></label>
+          <label class="opt-btn"><input type="radio" name="q34" value="non_souplesse"><div class="chk"></div><span>Non, la souplesse actuelle est préférable</span></label>
+          <label class="opt-btn"><input type="radio" name="q34" value="sans_opinion"><div class="chk"></div><span>Sans opinion</span></label>
+        </div>
       </div>
 
       <div class="qcard">
         <div class="q-num">Q35</div>
-        <div class="q-text">Seriez-vous favorable à une définition réglementaire quantitative de la notion d'accès « occasionnel » ?</div>
-        <div class="opts">
-          <label class="opt-btn"><input type="radio" name="q35" value="oui_clarifierait"><div class="chk"></div><span>Oui, cela clarifierait les pratiques</span></label>
-          <label class="opt-btn"><input type="radio" name="q35" value="oui_souple"><div class="chk"></div><span>Oui, mais cela devrait rester souple</span></label>
-          <label class="opt-btn"><input type="radio" name="q35" value="non_souplesse"><div class="chk"></div><span>Non, la souplesse actuelle est préférable</span></label>
-          <label class="opt-btn"><input type="radio" name="q35" value="sans_opinion"><div class="chk"></div><span>Sans opinion</span></label>
-        </div>
-      </div>
-
-      <div class="qcard">
-        <div class="q-num">Q36</div>
         <div class="q-text">En quelques mots, quelle est selon vous la principale lacune du dispositif actuel concernant les travailleurs non classés accédant aux zones réglementées ?</div>
-        <textarea name="q36" class="textarea-input" placeholder="Répondez librement…" rows="4"></textarea>
+        <textarea name="q35" class="textarea-input" placeholder="Répondez librement…" rows="4"></textarea>
       </div>
     </div>
 
@@ -959,19 +947,19 @@
   );
 
   /* ── conditional cards ── */
-  document.querySelectorAll('input[name="q16"]').forEach(r =>
+  document.querySelectorAll('input[name="q15"]').forEach(r =>
     r.addEventListener('change', function () {
-      document.getElementById('card-q17').classList.toggle('shown', this.value === 'oui_duree_definie');
+      document.getElementById('card-q16').classList.toggle('shown', this.value === 'oui_duree_definie');
     })
   );
-  document.querySelectorAll('input[name="q26"]').forEach(r =>
+  document.querySelectorAll('input[name="q25"]').forEach(r =>
     r.addEventListener('change', function () {
-      document.getElementById('card-q27').classList.toggle('shown', this.value === 'oui_avec_constat');
+      document.getElementById('card-q26').classList.toggle('shown', this.value === 'oui_avec_constat');
     })
   );
-  document.querySelectorAll('input[name="q30"]').forEach(r =>
+  document.querySelectorAll('input[name="q29"]').forEach(r =>
     r.addEventListener('change', function () {
-      document.getElementById('card-q31').classList.toggle('shown',
+      document.getElementById('card-q30').classList.toggle('shown',
         ['oui_frequemment','oui_occasionnellement'].includes(this.value));
     })
   );
