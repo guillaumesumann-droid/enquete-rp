@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(git *)"
+      "PowerShell(git *)",
+      "Bash(cp \"/root/.claude/uploads/864c7cc9-6674-5977-93a2-b182f3e3c733/154856de-IMG_6632.jpeg\" /home/user/enquete-rp/julie/photo-frigo.jpeg && ls -la /home/user/enquete-rp/julie/)"
     ]
   }
 }
