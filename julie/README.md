@@ -12,10 +12,6 @@ https://<compte>.github.io/enquete-rp/julie/
 
 C'est cette URL qu'il faut envoyer par SMS.
 
-## Photo manquante
-
-`photo-frigo.jpeg` (affichée après validation du code de l'étape 2) doit être déposée dans ce dossier (`julie/photo-frigo.jpeg`) avant le jour J — elle n'est pas encore présente dans le dépôt.
-
 ## Principe de sécurité
 
 - Aucun code n'est stocké en clair dans le JS : seule une empreinte (djb2) du code sert à la validation.
