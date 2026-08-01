@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>La chasse au trésor de Julie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night-1: #0a1130;
+    --night-2: #131c47;
+    --gold: #d4af37;
+    --gold-light: #f2dd9c;
+    --coral: #ff7a5c;
+    --parchment: #f6ecd6;
+    --parchment-dark: #e6d7ae;
+    --ink: #2b2013;
+    --ink-soft: #6b5c3f;
+    --danger: #d9534f;
+    --r: 16px;
+  }
+  * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    min-height: 100vh;
+    font-family: 'Work Sans', sans-serif;
+    color: var(--parchment);
+    background: var(--night-1);
+    background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,255,255,.9), transparent),
+      radial-gradient(1.5px 1.5px at 80% 10%, rgba(255,255,255,.7), transparent),
+      radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,.8), transparent),
+      radial-gradient(1.5px 1.5px at 30% 55%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.7), transparent),
+      radial-gradient(1.5px 1.5px at 45% 80%, rgba(255,255,255,.55), transparent),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,.65), transparent),
+      radial-gradient(1.5px 1.5px at 70% 90%, rgba(255,255,255,.5), transparent),
+      radial-gradient(ellipse at 50% 0%, var(--night-2) 0%, var(--night-1) 70%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 64px;
+  }
+
+  .wrap { width: 100%; max-width: 560px; }
+
+  /* ── HEADER / TITLE ── */
+  .game-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 6vw, 2.3rem);
+    color: var(--gold-light);
+    text-shadow: 0 2px 18px rgba(212,175,55,.35);
+    margin-bottom: 6px;
+    letter-spacing: .01em;
+  }
+  .game-sub {
+    text-align: center;
+    font-size: .9rem;
+    color: rgba(246,236,214,.65);
+    margin-bottom: 28px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 30px;
+  }
+  .dot {
+    width: 15px; height: 15px; border-radius: 50%;
+    background: rgba(246,236,214,.15);
+    border: 2px solid rgba(246,236,214,.25);
+    transition: all .3s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .dot.done { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(212,175,55,.6); }
+  .dot.current { background: var(--coral); border-color: var(--coral); box-shadow: 0 0 0 4px rgba(255,122,92,.25); animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+  .dot-line { width: 22px; height: 2px; background: rgba(246,236,214,.2); }
+  .dot-line.done { background: var(--gold); }
+
+  /* ── CARD (parchment) ── */
+  .card {
+    background: linear-gradient(160deg, var(--parchment) 0%, var(--parchment-dark) 100%);
+    color: var(--ink);
+    border-radius: var(--r);
+    padding: 34px 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(212,175,55,.3);
+    position: relative;
+    display: none;
+    animation: fadeUp .4s ease both;
+  }
+  .card.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: var(--r);
+    background-image: repeating-linear-gradient(45deg, rgba(107,92,63,.03) 0, rgba(107,92,63,.03) 2px, transparent 2px, transparent 8px);
+    pointer-events: none;
+  }
+
+  .step-kicker {
+    font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--coral); margin-bottom: 6px;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 1.35rem; color: var(--ink); margin-bottom: 14px;
+  }
+  .step-text { font-size: .92rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: 22px; }
+
+  /* ── WAX SEAL ── */
+  .seal-zone { display: flex; justify-content: center; margin-bottom: 22px; }
+  .seal {
+    width: 74px; height: 74px;
+    position: relative;
+  }
+  .seal-face, .seal-half::before {
+    background: radial-gradient(circle at 35% 30%, #e0574a, var(--coral) 55%, #b8402f 100%);
+    box-shadow: 0 6px 16px rgba(0,0,0,.35), inset 0 -4px 8px rgba(0,0,0,.25), inset 0 3px 6px rgba(255,255,255,.25);
+  }
+  .seal-face {
+    position: absolute; inset: 0; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity .25s ease .25s;
+  }
+  .seal-glyph {
+    font-family: 'Playfair Display', serif; font-weight: 700; color: rgba(255,255,255,.85);
+    font-size: 1.3rem;
+  }
+  .seal.cracking .seal-face { animation: crack-shake .35s ease; }
+  @keyframes crack-shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+
+  .seal-half {
+    position: absolute; top: 0; width: 50%; height: 100%; overflow: hidden;
+    opacity: 0; transition: transform .55s ease, opacity .3s ease;
+  }
+  .seal-half::before { content: ''; position: absolute; top: 0; width: 74px; height: 74px; border-radius: 50%; }
+  .seal-half-l { left: 0; }
+  .seal-half-l::before { left: 0; }
+  .seal-half-r { right: 0; }
+  .seal-half-r::before { right: 0; }
+
+  .seal.broken .seal-face { opacity: 0; }
+  .seal.broken .seal-half { opacity: 1; }
+  .seal.broken .seal-half-l { transform: translate(-20px, 14px) rotate(-28deg); }
+  .seal.broken .seal-half-r { transform: translate(20px, 14px) rotate(28deg); }
+
+  /* ── FORM ── */
+  .code-form { display: flex; gap: 10px; }
+  .code-input {
+    flex: 1; padding: 13px 16px; border-radius: 10px; border: 2px solid var(--parchment-dark);
+    background: #fffdf7; color: var(--ink);
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1rem; letter-spacing: .06em;
+    text-transform: uppercase; text-align: center;
+    outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .code-input:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,122,92,.18); }
+  .btn-validate {
+    padding: 13px 20px; border-radius: 10px; border: none; cursor: pointer;
+    background: var(--ink); color: var(--gold-light); font-family: 'Work Sans', sans-serif;
+    font-weight: 600; font-size: .88rem; transition: background .2s, transform .1s;
+  }
+  .btn-validate:hover { background: #3d2f1c; }
+  .btn-validate:active { transform: scale(.97); }
+
+  .error-msg {
+    margin-top: 12px; font-size: .82rem; color: var(--danger); font-weight: 600;
+    opacity: 0; transition: opacity .2s;
+  }
+  .error-msg.show { opacity: 1; }
+  .code-form.shake { animation: shake .4s ease; }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-6px); } 80% { transform: translateX(6px); } }
+
+  /* ── REVEAL ── */
+  .reveal { display: none; margin-top: 4px; }
+  .reveal.show { display: block; animation: fadeUp .5s ease both; }
+  .reveal p { font-size: .95rem; line-height: 1.7; color: var(--ink); margin-bottom: 10px; }
+  .reveal p:last-child { margin-bottom: 0; }
+  .reveal-photo { width: 100%; border-radius: 10px; margin-bottom: 14px; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+  .btn-next {
+    margin-top: 20px; width: 100%; padding: 14px; border: none; border-radius: 10px;
+    background: linear-gradient(135deg, var(--gold), #c39a2e); color: var(--ink);
+    font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: .92rem; letter-spacing: .02em;
+    cursor: pointer; transition: transform .15s, box-shadow .15s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,.35); }
+
+  /* ── FOOTER ── */
+  .foot {
+    text-align: center; margin-top: 30px; font-size: .72rem; color: rgba(246,236,214,.3);
+  }
+  .foot a { color: rgba(246,236,214,.4); }
+
+  /* ── CONFETTI CANVAS ── */
+  #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+
+  @media (max-width: 420px) {
+    .card { padding: 26px 18px; }
+    .code-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1 class="game-title">La chasse au trésor de Julie</h1>
+  <p class="game-sub">Suis les indices cachés dans la maison, un code à la fois.</p>
+
+  <div class="progress" id="progress"></div>
+
+  <!-- Step cards injected by JS -->
+  <div id="steps-container"></div>
+
+  <p class="foot">Bon anniversaire, Julie · <a href="#" id="reset-link">réinitialiser la progression</a></p>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============ crypto-lite (djb2 hash + XOR/base64 cipher) ============ */
+
+  function djb2(str) {
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) + hash) + str.charCodeAt(i);
+      hash = hash | 0;
+    }
+    return (hash >>> 0).toString(16);
+  }
+
+  function normalize(str) {
+    return (str || '').trim().toUpperCase();
+  }
+
+  function textToBytes(str) {
+    return new TextEncoder().encode(str);
+  }
+
+  function bytesToText(bytes) {
+    return new TextDecoder().decode(bytes);
+  }
+
+  function base64ToBytes(b64) {
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
+  }
+
+  function xorBytes(bytes, key) {
+    const keyBytes = textToBytes(key);
+    const out = new Uint8Array(bytes.length);
+    for (let i = 0; i < bytes.length; i++) {
+      out[i] = bytes[i] ^ keyBytes[i % keyBytes.length];
+    }
+    return out;
+  }
+
+  function decryptMessage(cipherB64, key) {
+    const bytes = base64ToBytes(cipherB64);
+    const xored = xorBytes(bytes, key);
+    return bytesToText(xored);
+  }
+
+  /* ============ steps data (no code, no message, ever in clear) ============ */
+
+  const STEPS = [
+    {
+      kicker: 'Étape bonus',
+      title: 'Le mot mystère',
+      text: "Entre le mot que tu as reconstitué.",
+      hash: 'd63ef55c',
+      cipher: "aj9tBTcyICB/ZzEmdi4gZzU2JCyQ7mU/cS49JiIhNyI+ImVyamAjeXkjaAk6KyBzICYnImUwPiohJC02JG8/YHkgIj08KSJtMyElIik8Jj82ZzYwMyM/hOw2diGR93RveTwnNSo9MXF/ZyYyNSeQ7iBzMi49NGU/N29vNDEhOSE0eSY7NyIxNSBveTwnNSo9MXF9e2ojaA=="
+    },
+    {
+      kicker: 'Étape 2',
+      title: 'Un nombre à trouver',
+      text: "Entre le nombre que tu as trouvé.",
+      hash: '2b5de',
+      cipher: "BVBUXhlKS1oEG0lRVk1WFF9LUF5WF1NJXF4bGVhVTQQbcFddUFpcGUlRVk1WGxlaVVhKSgQbS1xPXFhVFElRVk1WGwcFSQd1WBlKTFBNXBlKXBlJVkxLSkxQTRlV+pkZVvqAGVpcGVpVUFpR+pAZXEpNGU9QSlBbVVwXFxcFFkkH"
+    },
+    {
+      kicker: 'Étape 3',
+      title: 'Encore un chiffre',
+      text: 'Résous ce que décrit le papier, réduis le résultat à un seul chiffre, et entre-le.',
+      hash: '2b5d6',
+      cipher: "DUEPdVhDVFJFWF5fEV1QEVJZVFxYX/KYVBELEV0WDUJFQ15fVg9UX0dUXV5BQVQRX/OBAg0eQkVDXl9WDxFFFlBFRVRfVR0RQV5C8phUEVBEEVxYXVhURBFVVEIRQVleRV5CHw0eQQ8="
+    },
+    {
+      kicker: 'Étape 4',
+      title: 'Un dernier chiffre',
+      text: 'Compte, réduis à un seul chiffre, et entre-le.',
+      hash: '2b5dd',
+      cipher: "BEgGbE0YWUsYVVlRVkxdVllWTBhMXUsYTEpXUUsYW1BRXl5KXUsYAhhbXVRNURhMSldNTvuRGFxZVksYVFkYBEtMSldWXwZbUFlVWkpdBBdLTEpXVl8GFBhbXVRNURhMSldNTvuRGFxZVksYVFkYBEtMSldWXwZbTVFLUVZdBBdLTEpXVl8GFgQXSAYESAZ7V1VaUVZdFVRdSxQYXFlWSxhUH1dKXEpdGFf7gRhMTRhUXUsYWUsYXPuRW1dNTl1KTEsUGEhXTUoYSvuRTvuRVF1KGFRdGFtXXF0YXlFWWVQWBBdIBg=="
+    },
+    {
+      kicker: 'Étape finale',
+      title: 'Le code complet',
+      text: 'Assemble tes chiffres, dans l’ordre où tu les as trouvés, et entre le code final.',
+      hash: 'b87abe7',
+      cipher: "BUEGf/KRVVhbUEVZTVhXV0IUGVVRS1RbTVhXVxFUWBFaTFBWXVRKUFQUGV5NT0NdGUVZGUdZVVhLXB8EFkEGBUEGbUQYWl5WV1BRShFUXBFbVlVdFw0XSQ8=",
+      final: true
+    }
+  ];
+
+  const STORAGE_KEY = 'julie-treasure-hunt-progress';
+
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { unlocked: 0, reveals: {} };
+      const parsed = JSON.parse(raw);
+      if (typeof parsed.unlocked !== 'number' || typeof parsed.reveals !== 'object') {
+        return { unlocked: 0, reveals: {} };
+      }
+      return parsed;
+    } catch (e) {
+      return { unlocked: 0, reveals: {} };
+    }
+  }
+
+  function saveProgress(progress) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  }
+
+  let progress = loadProgress();
+
+  /* ============ rendering ============ */
+
+  const progressEl = document.getElementById('progress');
+  const stepsContainer = document.getElementById('steps-container');
+
+  function renderProgress() {
+    progressEl.innerHTML = '';
+    STEPS.forEach((_, i) => {
+      if (i > 0) {
+        const line = document.createElement('div');
+        line.className = 'dot-line' + (i <= progress.unlocked ? ' done' : '');
+        progressEl.appendChild(line);
+      }
+      const dot = document.createElement('div');
+      let cls = 'dot';
+      if (i < progress.unlocked) cls += ' done';
+      else if (i === progress.unlocked) cls += ' current';
+      dot.className = cls;
+      progressEl.appendChild(dot);
+    });
+  }
+
+  function buildStepCard(step, index) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'card-' + index;
+
+    card.innerHTML = `
+      <div class="step-kicker">${step.kicker}</div>
+      <div class="step-title">${step.title}</div>
+      <p class="step-text">${step.text}</p>
+
+      <div class="seal-zone">
+        <div class="seal" id="seal-${index}">
+          <div class="seal-face"><span class="seal-glyph">J</span></div>
+          <div class="seal-half seal-half-l"></div>
+          <div class="seal-half seal-half-r"></div>
+        </div>
+      </div>
+
+      <form class="code-form" id="form-${index}" autocomplete="off">
+        <input type="text" class="code-input" id="input-${index}" placeholder="Ton code" autocomplete="off" autocapitalize="characters" spellcheck="false">
+        <button type="submit" class="btn-validate">Valider</button>
+      </form>
+      <div class="error-msg" id="error-${index}">Code incorrect, réessaie.</div>
+
+      <div class="reveal" id="reveal-${index}"></div>
+    `;
+
+    stepsContainer.appendChild(card);
+
+    const form = card.querySelector('#form-' + index);
+    const input = card.querySelector('#input-' + index);
+    const errorMsg = card.querySelector('#error-' + index);
+    const seal = card.querySelector('#seal-' + index);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const raw = normalize(input.value);
+      if (!raw) return;
+
+      if (djb2(raw) === step.hash) {
+        errorMsg.classList.remove('show');
+        seal.classList.add('cracking');
+        setTimeout(() => {
+          seal.classList.remove('cracking');
+          seal.classList.add('broken');
+        }, 350);
+
+        const decrypted = decryptMessage(step.cipher, raw);
+        progress.reveals[index] = decrypted;
+        if (progress.unlocked <= index) progress.unlocked = index + 1;
+        saveProgress(progress);
+
+        setTimeout(() => {
+          form.style.display = 'none';
+          showReveal(index, decrypted, step.final);
+          renderProgress();
+        }, 500);
+      } else {
+        errorMsg.classList.add('show');
+        form.classList.remove('shake');
+        void form.offsetWidth;
+        form.classList.add('shake');
+      }
+    });
+
+    return card;
+  }
+
+  function showReveal(index, html, isFinal) {
+    const revealEl = document.getElementById('reveal-' + index);
+    revealEl.innerHTML = html;
+
+    if (!isFinal && index < STEPS.length - 1) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn-next';
+      btn.innerHTML = 'Étape suivante <span aria-hidden="true">&rarr;</span>';
+      btn.addEventListener('click', function () {
+        goToStep(index + 1);
+      });
+      revealEl.appendChild(btn);
+    }
+
+    revealEl.classList.add('show');
+
+    if (isFinal) {
+      launchConfetti();
+    }
+  }
+
+  function goToStep(index) {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    const card = document.getElementById('card-' + index);
+    if (card) {
+      card.classList.add('active');
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function restoreState() {
+    STEPS.forEach((step, index) => {
+      buildStepCard(step, index);
+    });
+
+    // Replay already-unlocked steps' reveals (progress stored client-side only,
+    // after the visitor already proved she had the right code).
+    for (let i = 0; i < progress.unlocked; i++) {
+      const card = document.getElementById('card-' + i);
+      const form = card.querySelector('.code-form');
+      const seal = card.querySelector('.seal');
+      form.style.display = 'none';
+      seal.classList.add('broken');
+      const html = progress.reveals[i];
+      if (html) showReveal(i, html, STEPS[i].final);
+    }
+
+    const activeIndex = Math.min(progress.unlocked, STEPS.length - 1);
+    goToStep(activeIndex);
+    renderProgress();
+  }
+
+  restoreState();
+
+  document.getElementById('reset-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (confirm('Réinitialiser toute la progression de la chasse au trésor ?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+  });
+
+  /* ============ confetti ============ */
+
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const colors = ['#d4af37', '#ff7a5c', '#f6ecd6', '#e0574a', '#f2dd9c'];
+    const pieces = [];
+    const count = 160;
+    for (let i = 0; i < count; i++) {
+      pieces.push({
+        x: Math.random() * w,
+        y: -20 - Math.random() * h * 0.5,
+        size: 5 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedY: 2 + Math.random() * 3,
+        speedX: -1.5 + Math.random() * 3,
+        rotation: Math.random() * 360,
+        spin: -6 + Math.random() * 12
+      });
+    }
+
+    let frame = 0;
+    const maxFrames = 420;
+
+    function tick() {
+      frame++;
+      ctx.clearRect(0, 0, w, h);
+      pieces.forEach(p => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.rotation += p.spin;
+        if (p.y > h + 20) {
+          p.y = -20;
+          p.x = Math.random() * w;
+        }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      });
+      if (frame < maxFrames) {
+        requestAnimationFrame(tick);
+      } else {
+        ctx.clearRect(0, 0, w, h);
+      }
+    }
+
+    tick();
+  }
+})();
+</script>
+
+</body>
+</html>
